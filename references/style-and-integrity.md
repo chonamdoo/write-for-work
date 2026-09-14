@@ -32,6 +32,8 @@ When evidence is missing, do one of the following:
 
 Never repair missing evidence by inventing a plausible detail.
 
+Make evidence status and claim-relevant limitations readable at the claim. In prose, state how it was checked when available; in compact tables or charts, use plain-language status beside the value and a clearly attached note, citation, or nearby legend for supporting methods. Preserve required citation formats. Replace unexplained badges that obscure certainty; do not invent a checking method.
+
 ## Korean writing checks
 
 Prefer natural Korean order and direct business wording.
@@ -41,6 +43,7 @@ Prefer natural Korean order and direct business wording.
 - Use "~라고 볼 수 있다" only when real uncertainty remains.
 - Reduce repeated sentence-openers such as "또한", "게다가", and "한편".
 - Replace empty weight such as "주목할 만하다", "시사하는 바가 크다", and "의미가 있다" with the actual result.
+- Inspect tails such as "~을 보여준다", "~을 의미한다", and "이는 ~을 방증한다": remove those that merely add significance. Retain supported interpretation with its reasoning and uncertainty, distinct from the observed fact.
 - Replace vague technical nouns with the screen, action, file, behavior, or decision the reader can inspect.
 - Avoid compressed noun chains when a short sentence is clearer.
 - Keep domain terminology when precision matters, and explain it at first use for mixed audiences.
@@ -68,14 +71,18 @@ Avoid promotional certainty:
 ## Structure and typography
 
 - Keep headings that help a reader predict the section content.
+- Make section and table labels describe their actual contents. A column of implemented changes is not "benefits"; separate observed effects from clearly labeled expected benefits when useful. Preserve required template labels and clarify within them.
 - Remove subtitles that merely repeat the title.
 - Use tables for exact comparisons and repeated fields.
 - Use lists for scan-friendly actions, assumptions, or risks.
 - Use prose when every bullet is a decorative label followed by one sentence.
 - Use cards only for genuinely parallel summary metrics.
+- When a summary and detailed section duplicate information without helping navigation or decisions, keep the useful form. In lookup references, retain complete details and shorten the summary to an index rather than deleting necessary facts.
+- For file or folder listings, put each relevant entry on its own line with its source-supported role when useful. Keep hierarchy or diagrams that convey relationships; icons, folding arrows, and decorative lines are optional, not a required explorer UI.
 - Keep emphasis selective. Do not bold every key noun.
 - Remove decorative emoji unless it carries product meaning or matches the requested voice.
 - Preserve required formatting and source links.
+- In editable prose, use link text that identifies the supplied destination or task instead of a context-free "here" or "여기". Preserve the link target, required template syntax, and verbatim source text.
 
 ## Plain-language reference
 

@@ -31,6 +31,12 @@ Examples of terms to preserve:
 
 Explain an acronym at first use when the reader may not know it.
 
+Treat metaphor-derived words by their use, not their origin. Keep technical uses such as "테스트 격리", "배포 승격", and "파생 상태" when they name the actual operation or concept; explain them when the reader needs it. Replace a figurative use only when a concrete expression makes its meaning clearer.
+
+When explaining a technical or quantitative concept, preserve the defining relationship, direction, and limits, not just its name. A familiar neighboring concept is not an equivalent definition. If a simplification introduces a definition or mechanism, ground it in supplied or verified material. Without that grounding, retain the original term and explain the supported result or limitation instead of adding a plausible definition or analogy.
+
+For example, a linear relationship is a straight-line relationship; it can slope upward or downward and need not pass through zero. When explaining "선형 관계", "직선으로 나타낼 수 있는 관계" preserves that scope. A constant ratio between the values or a requirement that both increase together is narrower. Apply this distinction to the meaning, not as a ban on the word "비율".
+
 ## Korean sentence repair
 
 Build the sentence around who does what, under which condition, rather than translating English word order or replacing isolated words. Name an actor only when the source identifies one; a passive is valid when the actor is unknown or irrelevant.
@@ -48,6 +54,8 @@ These are synthetic examples, not mandatory substitutions:
 
 - Unpack noun chains into a subject and predicate when that clarifies the relationship. Keep an established noun such as "의존성 주입" rather than paraphrasing away its meaning.
 - Use one name for one concept. Do not alternate "사용자", "고객", and "클라이언트" for rhythm when they mean the same thing, or collapse them when they mean different things.
+- Resolve the scope of `만/도/는` and negation from context before rewriting. "모두 승인하지 않았다" can mean none approved or not all approved; if the source does not settle the difference, flag both readings rather than choosing one.
+- Give `이`, `그`, `해당`, and `이를` an unambiguous referent. Repeat the concrete noun or name the relevant event when several antecedents are possible; keep a clear pronoun, and do not invent a referent for an ambiguous source.
 - Distinguish real identifiers from decorative English. Keep an exact token such as `retryCount`, but remove duplicate labels such as "retry 재시도" when `retry` is not an identifier. Explain unfamiliar terminology once for the intended audience.
 - Keep the document's chosen register consistent. Technical instructions may repeatedly end in "~한다"; vary wording only when it improves comprehension, not to satisfy a rhythm rule.
 - Read the Korean around code tokens on its own. Repair awkward particles or word order without translating the tokens.
@@ -105,8 +113,10 @@ Treat these as signals that the sentence may be adding weight without informatio
 | 단순한 X를 넘어 Y | State Y directly. Keep the contrast only if X and Y genuinely differ. |
 | X에 그치지 않고 Y | State the additional result and its evidence. |
 | X가 아니라 Y다 | Keep only when correcting a real misconception. |
+| 흔히 ~라고 생각하기 쉽지만, 언뜻 ~가 나아 보이지만 | Apply the objection rule in [SKILL.md](../SKILL.md): distinguish sourced opposition from an explicitly hypothetical alternative. |
 | 핵심은 명확하다 | State the actual conclusion. |
 | 결국 중요한 것은 | Remove the lead-in and state what matters. |
+| 결국 이게 핵심이다, 차이는 여기서 갈린다 | Remove a repeated section-ending slogan unless it adds a supported consequence or action. |
 | 이러한 맥락에서 | Name the relationship or remove the transition. |
 | 이를 통해 | State who did what and what changed. |
 | 나아가 | Use only when the next point is a real extension. |
@@ -197,6 +207,8 @@ Check for patterns that make writing look generated even when individual sentenc
 - Every bullet uses a bold label followed by one generic sentence.
 - The introduction announces the document instead of giving the answer.
 - The conclusion repeats the introduction without a decision or next action.
+- Every section adds a closing slogan that repeats its last fact.
+- Prose repeatedly ends in noun fragments such as "근거 없음. 대안 없음." Combine related fragments into a sentence when that clarifies the relationship; keep useful table cells, status labels, or deliberate source voice.
 - Headings, cards, callouts, and highlights all emphasize the same point.
 - Unknowns are hidden under "추후 검토" without stating what decision they affect.
 - The document alternates between inflated claims and broad disclaimers.
@@ -274,3 +286,7 @@ The Korean and technical-writing additions were authored for this skill after re
 - [Patina technical documents](https://github.com/devswha/patina/blob/main/document-types/technical.md) and [code comments](https://github.com/devswha/patina/blob/main/document-types/code-comment.md): document-specific constraints and exact technical meaning.
 
 These are references, not runtime dependencies or proof of rewriting quality. The PR mode in [modes.md](modes.md) applies those principles to reviewable changes. Examples here are synthetic; no AI-authorship claims, forced change ratios, invented experiences, or external execution workflows are adopted.
+
+The 2026-09-14 update uses [issue #2's adversarial review](https://github.com/chonamdoo/write-for-work/issues/2) as its supplied source for instruction clarity, evidence presentation, and document-purpose checks across this package. The referenced proposal was unavailable in the repository; its missing text was not reconstructed, and the issue's external-source attributions were not independently reverified. Exceptions for supported interpretation, clear pronouns, coupled actions, historical facts, real deadlines, and short mixed-purpose documents are this skill author's adaptations, not quoted source rules.
+
+Subsequent 2026-09-14 source-grounded evaluation informed narrower safeguards for technical simplification, sender commitments, and output shape. The technical distinction draws on [ABS: Correlation and causation](https://www.abs.gov.au/statistics/understanding-statistics/statistical-terms-and-concepts/correlation-and-causation), including its linear-relationship limits; commitment and output-shape safeguards are author-derived repairs to this skill's existing source and task boundaries. These are not a requirement to load research records at runtime or a claim of general writing-quality improvement.
