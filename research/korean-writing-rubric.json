@@ -285,10 +285,15 @@
       "unverified": 1
     },
     "pr_revision_4_case_required": {
-      "pass": 4,
-      "fail": 0,
+      "pass": 3,
+      "fail": 1,
       "unverified": 0
     },
-    "note": "PR3 검토의 T04 출처 오류 및 T13 링크 유용성 정정을 반영한 현재 집계. 과거 메타 리뷰의 서술형 집계보다 우선한다."
+    "note": "PR3의 T04 출처, T13 링크, 추가 수신자 후속 요청 판정 정정을 반영. 과거 메타 리뷰의 서술형 집계보다 우선한다. 별도 실행집을 합산하지 않는다.",
+    "pr_followup_5_case_required": {
+      "pass": 5,
+      "fail": 0,
+      "unverified": 0
+    }
   }
 }
