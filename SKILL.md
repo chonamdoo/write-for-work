@@ -112,6 +112,7 @@ When converting project experience into reusable guidance, keep only generalized
 - For Compare, provide the original artifact, revised artifact, and a compact change table.
 - When review notes are requested, separate factual corrections from stylistic edits. Otherwise omit sentences that merely report what you changed or preserved, whether inline or separate. Keep qualifications or unresolved issues needed to make the deliverable trustworthy; do not routinely announce that you did not verify externally.
 - Follow the requested output shape, including paragraph limits. Integrate necessary qualifications into that shape where possible; add a separate note only for a material unresolved issue that cannot be safely conveyed there.
+- Keep missing-information placeholders exact and mechanically replaceable, including in any completion instructions. If a link destination is unknown, retain an explicit plain-text placeholder rather than inventing a URL or wrapping it in broken Markdown. When a real destination is supplied, preserve it and use valid link syntax.
 - Do not add a generic preface, praise, closing summary, or offer to do more work.
 
 ## Final check
