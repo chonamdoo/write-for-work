@@ -136,8 +136,8 @@
 
 ### 스킬 반영 범위
 
-- [`SKILL.md`](../SKILL.md): 발신자의 약속과 수신자의 요청된 행동 보존, 미승인 후속 제안의 본문 분리, 요청된 문단 수, 해결된 편집의 자기보고 생략, 정확히 교체 가능한 자리표시자와 유효한 링크 구문.
-- [`references/plain-language.md`](../references/plain-language.md): 기술 개념의 방향·관계·범위 보존, 정의의 근거, 선형 관계 대비 예시와 조사 출처.
+- [`SKILL.md`](../skills/write-for-work/SKILL.md): 발신자의 약속과 수신자의 요청된 행동 보존, 미승인 후속 제안의 본문 분리, 요청된 문단 수, 해결된 편집의 자기보고 생략, 정확히 교체 가능한 자리표시자와 유효한 링크 구문.
+- [`references/plain-language.md`](../skills/write-for-work/references/plain-language.md): 기술 개념의 방향·관계·범위 보존, 정의의 근거, 선형 관계 대비 예시와 조사 출처.
 - `references/modes.md`, `references/style-and-integrity.md`는 이번 심층 조사 단계에서 변경하지 않았다. 스킬 frontmatter와 호출 계약도 유지했다. 연구 자료를 스킬 실행 때 필수로 읽게 하지 않았다.
 
 ## 수정 전 40개: 전체 축 판정

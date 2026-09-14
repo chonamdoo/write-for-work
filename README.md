@@ -30,6 +30,19 @@ Ask your agent to use `write-for-work` with your draft or notes. For example:
 
 > Use write-for-work to rewrite this project update in clear, natural Korean while preserving the facts.
 
+## Package layout
+
+- [`skills/write-for-work/`](skills/write-for-work/) is the installable skill: `SKILL.md`, its `references/`, and the MIT license. The installer discovers this directory automatically; the GitHub installation commands above are unchanged.
+- [`research/`](research/) holds source investigations, evaluation inputs and outputs, and scoring criteria. Keep these outside the installable directory so agents do not receive evaluation material with the skill.
+
+Evaluation snapshots retain their original content, hashes, and skill-relative paths. Moving the package does not change the writing instructions or invocation policy.
+
+To install changes from a local checkout into Claude Code, run from the repository root:
+
+```sh
+npx skills@latest add . --skill write-for-work -g --agent claude-code -y
+```
+
 ## License
 
 [MIT](LICENSE)
