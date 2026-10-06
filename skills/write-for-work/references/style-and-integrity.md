@@ -92,7 +92,7 @@ For Korean business writing, read [plain-language.md](plain-language.md). Apply 
 
 Apply punctuation and typography restrictions only when the user, repository, organization, or selected profile requires them. Do not treat one person's preferences as universal writing rules.
 
-For Ricky's clean-writing profile:
+When the user or organization has explicitly selected a clean-writing profile with the following restrictions:
 
 - Avoid U+2014 em dash in revised prose.
 - Avoid U+00B7 middle dot in revised prose.
