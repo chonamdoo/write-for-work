@@ -1,0 +1,302 @@
+[
+  {
+    "id": "K1-gaejosik-deslop",
+    "request": "다음 주간 보고 개조식 초안에서 AI 티만 빼 줘. 내용과 문체는 유지해.\n\n## 3. 검색 개선 현황\n- 신규 검색 엔진을 통하여 PostgreSQL 에서 12,000건 목록 조회 시간을 2.4초에서 0.6초로 단축함 — 사내 시험 환경 기준임\n- ★ 주요 변경: 색인 재구성 · 자동완성 추가 · 오타 보정 적용\n- 기존 화면 대비 필터 구성이 상이하여 사용자 안내가 필요함\n- 성능·품질 지표는 다음 주 운영 환경에서 재측정 예정임\n- 담당 조직 간 일정 조율에 있어서 확인 절차가 추가되어짐\n\n| 항목 | 운영 반영 |\n|---|---|\n| 색인 재구성 | 완료 |\n| 오타 보정 | — |",
+    "acceptance": [
+      {
+        "criterion": "Keeps 개조식 endings (~함/~임/~됨/noun); no conversion to ~한다 or ~합니다.",
+        "source": "stop-slop-ko 553be05 ko-slop-patterns.md C; plain-language.md Register and sentence endings",
+        "required": true,
+        "reason": "The user asked to keep the style; a register switch changes the document voice."
+      },
+      {
+        "criterion": "Removes the prose em-dash, the decorative star, and the spaced middle-dot list separator.",
+        "source": "stop-slop-ko 553be05 ko-slop-patterns.md A",
+        "required": true,
+        "reason": "The user asked to remove AI tells; these are the listed tells."
+      },
+      {
+        "criterion": "Keeps the table — marker.",
+        "source": "stop-slop-ko 553be05 ko-slop-patterns.md D",
+        "required": true,
+        "reason": "Changing a table status value changes content."
+      },
+      {
+        "criterion": "Keeps 성능·품질 as a joined pair.",
+        "source": "stop-slop-ko 553be05 ko-slop-patterns.md D; 한글 맞춤법 부록 가운뎃점 (2)",
+        "required": false,
+        "reason": "Splitting it preserves meaning; this measures style fidelity only."
+      },
+      {
+        "criterion": "Keeps every number and the 사내 시험 환경 condition; attaches the particle after PostgreSQL; adds no facts.",
+        "source": "write-for-work SKILL.md Preserve evidence integrity; 한글 맞춤법 제41항",
+        "required": true,
+        "reason": "Numbers and conditions are facts."
+      }
+    ]
+  },
+  {
+    "id": "K2-blog-prose",
+    "request": "사내 기술 블로그에 올릴 글이야. 다듬어 줘.\n\n오늘은 배포 전 체크리스트에 대해 알아보겠습니다. 정말 많은 분들이 헷갈려 하시는 부분입니다.\n\n저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다. 이 절차가 생긴 뒤 롤백은 분기당 4회에서 1회로 줄었습니다. 이것이 체크리스트 덕분이라고 생각합니다.\n\n또한 리뷰어 두 명의 승인을 받아야 머지할 수 있습니다. 매우 번거롭다고 생각하실 수도 있습니다. 하지만 저는 이 규칙이 필요하다고 생각합니다.\n\n이번 경험을 통해 협업의 중요성을 깨달았습니다. 도움이 되셨길 바랍니다!",
+    "acceptance": [
+      {
+        "criterion": "Keeps the ~습니다 register.",
+        "source": "stop-slop-ko 553be05 prose-patterns.md 종결",
+        "required": true,
+        "reason": "The author chose the register; polishing does not change it."
+      },
+      {
+        "criterion": "Opens with content: no sentence that announces what the post will cover (including a replacement such as \"~ 두 가지를 소개합니다\").",
+        "source": "stop-slop-ko 553be05 prose-patterns.md 글 종류별 상투구 (블로그)",
+        "required": false,
+        "reason": "Clarified on 2026-11-03 after review; the earlier string check only tested the original phrase. Advisory because an announcing sentence is a style issue, not a factual one."
+      },
+      {
+        "criterion": "Removes the lesson ending and the closing pleasantry without inventing a replacement experience or behavior.",
+        "source": "stop-slop-ko 553be05 prose-patterns.md 1, 지어내지 않기",
+        "required": true,
+        "reason": "Inventing behavior fabricates facts; the lesson has no supporting behavior in the source."
+      },
+      {
+        "criterion": "Keeps the checklist-to-fewer-rollbacks link as the author's belief, not a confirmed cause.",
+        "source": "write-for-work SKILL.md Preserve evidence integrity",
+        "required": true,
+        "reason": "The source supplies no causal evidence."
+      },
+      {
+        "criterion": "Keeps 4회 to 1회, 지난 분기, and two reviewers.",
+        "source": "write-for-work SKILL.md Preserve evidence integrity",
+        "required": true,
+        "reason": "Facts."
+      }
+    ]
+  },
+  {
+    "id": "K3-clean-spec",
+    "request": "아래 요구사항을 검토해서 AI 티 나는 표현이 있으면 고쳐 줘. 없으면 그대로 둬.\n\n- 로그인 실패는 5회까지 허용하고, 6회째에는 계정을 30분 잠근다.\n- 비밀번호는 12자 이상이며 영문 대문자, 영문 소문자, 숫자를 모두 포함한다.\n- 잠금 해제는 본인 인증 또는 관리자 승인으로만 할 수 있다.\n※ 잠금은 IP 차단이 아니라 계정 단위 제한이다.",
+    "acceptance": [
+      {
+        "criterion": "Leaves the requirements substantively unchanged, keeping 5회, 6회째, 30분, 12자, the three character classes, 모두, 만, the 아니라 correction, the ※ note, and the ~다 endings.",
+        "source": "stop-slop-ko 553be05 ko-slop-patterns.md B (Korean exceptions to English rules)",
+        "required": true,
+        "reason": "A list of three requirements and a real correction are content."
+      }
+    ]
+  },
+  {
+    "id": "K4-tone-match",
+    "request": "아래 [기준]은 이미 승인된 설계서 2장이고, [초안]은 내가 쓴 4장이야. 4장을 기준 문체에 맞춰 줘.\n\n[기준]\n### 2.1 주문 상태 구성\n- 주문 상태는 접수, 결제, 출고, 완료 4단계로 구성\n- 상태 전환은 서버에서만 수행\n※ 결제 실패 시 접수 상태로 되돌림.\n\n[초안]\n### 4.1 환불 처리 흐름을 정의한다\n- 환불 요청은 고객센터 화면 · 앱 · 웹에서 접수할 수 있다 — 접수 후 24시간 안에 검토한다.\n- 승인된 환불은 원래 결제 수단으로 되돌려진다.\n※ 부분 환불의 경우에는 관리자 승인이 필요하다.",
+    "acceptance": [
+      {
+        "criterion": "Matches the reference by element: noun-ending heading and bullets, and a ~함/~됨 or noun-ending ※ note.",
+        "source": "stop-slop-ko 553be05 tone-extraction.md 3",
+        "required": true,
+        "reason": "The user asked to match the reference style."
+      },
+      {
+        "criterion": "Removes the em-dash and spaced middle-dot list separator.",
+        "source": "stop-slop-ko 553be05 tone-extraction.md 4; reference uses neither",
+        "required": true,
+        "reason": "The reference does not use them."
+      },
+      {
+        "criterion": "Keeps three intake channels, 24시간, 원래 결제 수단, and the partial-refund approval condition.",
+        "source": "write-for-work SKILL.md Preserve evidence integrity",
+        "required": true,
+        "reason": "Facts and conditions."
+      }
+    ]
+  },
+  {
+    "id": "K5-pr-verbatim",
+    "request": "PR 설명 다듬어 줘.\n\n이번 PR 을 통하여 결제 재시도 로직의 개선을 진행했습니다. 오류 메시지 `Retry limit — exceeded` 가 나올 때 재시도 횟수를 `maxRetry` 값으로 제한합니다. 테스트는 로컬에서만 실행했습니다.",
+    "acceptance": [
+      {
+        "criterion": "Keeps the code spans byte-for-byte, including the em-dash inside the error text.",
+        "source": "write-for-work SKILL.md Select the operation (verbatim text)",
+        "required": true,
+        "reason": "Error text and identifiers must stay exact."
+      },
+      {
+        "criterion": "Removes the particle spacing and the 을 통하여 / 개선을 진행 phrasing.",
+        "source": "stop-slop-ko 553be05 ko-slop-patterns.md A, B; 한글 맞춤법 제41항",
+        "required": true,
+        "reason": "The user asked for a polish; these are the listed tells."
+      },
+      {
+        "criterion": "Keeps that tests ran only locally; adds no verification or benefit claim.",
+        "source": "write-for-work modes.md PR descriptions",
+        "required": true,
+        "reason": "Verification must be reported as observed."
+      }
+    ]
+  },
+  {
+    "id": "K6-gaejosik-body-natural",
+    "request": "설계서 3장 본문인데 자연스럽게 다듬어 줘.\n\n3.2 데이터 동기화\n본 시스템은 주문 데이터를 5분 주기로 ERP에 전송함. 전송 실패 시 3회까지 재시도하며, 3회 모두 실패한 건은 별도 큐에 적재하여 운영자가 수동으로 재처리함. 재처리 결과는 일 1회 정산 리포트에 반영됨.",
+    "acceptance": [
+      {
+        "criterion": "Keeps the ~함/~됨 endings of the body sentences instead of converting them to ~한다 or ~합니다.",
+        "source": "stop-slop-ko 553be05 SKILL.md 한국어 함정; ko-slop-patterns.md C",
+        "required": true,
+        "reason": "\"자연스럽게\" asks for a polish, not a register change; the rest of the design document keeps its register."
+      },
+      {
+        "criterion": "Keeps 5분, 3회, 별도 큐, 수동 재처리, and once-a-day reflection into the settlement report without stating how often the report is generated.",
+        "source": "write-for-work SKILL.md Preserve evidence integrity",
+        "required": true,
+        "reason": "The source fixes when results are reflected, not the report schedule."
+      }
+    ]
+  },
+  {
+    "id": "K7-slide-symbols",
+    "request": "제안서 요약 슬라이드 문구야. 다듬어 줘.\n\n- 도입 효과 : 상담 응답 시간 단축 · 상담원 업무 부담 완화 · 야간 문의 대응\n- 적용 범위 : 회원·비회원 문의 전체\n- 기대 수치 = 평균 응답 시간 40% 감소 (시범 운영 2주 기준)\n- ✅ 1차 적용 대상 : 배송 문의",
+    "acceptance": [
+      {
+        "criterion": "Replaces the spaced middle-dot list separator, the = label separator, and the decorative check mark.",
+        "source": "stop-slop-ko 553be05 ko-slop-patterns.md A",
+        "required": true,
+        "reason": "The user asked for a polish; these are the listed tells."
+      },
+      {
+        "criterion": "Keeps 회원·비회원 as a joined pair.",
+        "source": "stop-slop-ko 553be05 ko-slop-patterns.md D; 한글 맞춤법 부록 가운뎃점 (2)",
+        "required": false,
+        "reason": "The norm also allows a comma or 와; this measures style fidelity only."
+      },
+      {
+        "criterion": "Keeps 40%, the 시범 운영 2주 기준 condition, the expected (not achieved) status, and noun-ending slide text.",
+        "source": "write-for-work SKILL.md Preserve evidence integrity",
+        "required": true,
+        "reason": "Facts, status, and register."
+      },
+      {
+        "criterion": "Any review note is separated from the slide text so it cannot be read as a slide line.",
+        "source": "write-for-work SKILL.md Output behavior",
+        "required": false,
+        "reason": "Added on 2026-11-03 after review observed ※ notes directly under the slide bullets."
+      }
+    ]
+  },
+  {
+    "id": "K8-retro-keep",
+    "request": "팀 블로그에 올릴 분기 회고 글이야. 다듬어 줘.\n\n정말 많은 일이 있었던 분기였습니다. 7월 결제 장애는 영향도 '매우 높음'으로 분류했고, 복구까지 2시간이 걸렸습니다. 원인은 운영 DB에 바로 실행한 마이그레이션이었습니다.\n\n이번 장애로 마이그레이션은 스테이징에서 먼저 실행해야 한다는 것을 깨달았습니다. 앞으로 매주 금요일에 마이그레이션 계획을 팀 채널에 공유하겠습니다.",
+    "acceptance": [
+      {
+        "criterion": "Keeps the classification value '매우 높음'.",
+        "source": "plain-language.md In paragraph prose (keep case)",
+        "required": true,
+        "reason": "It is a recorded severity value; removing 매우 changes the fact."
+      },
+      {
+        "criterion": "Keeps the commitment to share the migration plan in the team channel every Friday.",
+        "source": "write-for-work SKILL.md Select the operation (sender commitments)",
+        "required": true,
+        "reason": "Deleting a sender commitment changes what the post promises."
+      },
+      {
+        "criterion": "Keeps the specific lesson (run migrations on staging first).",
+        "source": "plain-language.md In paragraph prose (keep case)",
+        "required": true,
+        "reason": "The lesson is supported by the incident and carries the post's point."
+      },
+      {
+        "criterion": "Keeps the ~습니다 register and the facts 7월, 2시간, 운영 DB.",
+        "source": "write-for-work SKILL.md Preserve evidence integrity",
+        "required": true,
+        "reason": "Facts and author register."
+      },
+      {
+        "criterion": "Removes or makes concrete the empty opener \"정말 많은 일이 있었던 분기였습니다\".",
+        "source": "stop-slop-ko 553be05 prose-patterns.md 4",
+        "required": false,
+        "reason": "Style improvement only."
+      }
+    ]
+  },
+  {
+    "id": "K9-punct-keep",
+    "request": "아래 개조식 안내 문구 다듬어 줘.\n\n- 대상 데이터: 수집 · 정제 단계 산출물\n- 화면 기준 해상도: 1920×1080\n- 장애 감지 후 1시간 만에 복구 완료\n- 처리 방식은 일괄, 실시간 중 운영팀이 선택함",
+    "acceptance": [
+      {
+        "criterion": "Keeps 1920×1080 exactly.",
+        "source": "plain-language.md keep cases (math notation that is content)",
+        "required": true,
+        "reason": "A resolution value is content."
+      },
+      {
+        "criterion": "Keeps the space in 1시간 만에.",
+        "source": "한글 맞춤법 제42항 (bound nouns are written apart)",
+        "required": true,
+        "reason": "Attaching 만 to 1시간 is a spelling error."
+      },
+      {
+        "criterion": "Keeps 개조식 endings (noun, 완료, ~함).",
+        "source": "plain-language.md Register and sentence endings",
+        "required": true,
+        "reason": "The user asked for a polish."
+      },
+      {
+        "criterion": "Writes 수집·정제 as a joined pair without spaces.",
+        "source": "한글 맞춤법 부록 가운뎃점 (2) and its spacing note",
+        "required": false,
+        "reason": "A comma is also allowed by the norm."
+      }
+    ]
+  },
+  {
+    "id": "KP02-regression",
+    "request": "다음 확정 맥락에 맞춰 업무 문장을 다듬어줘.\n확정 맥락: 목표를 소개하는 문단이며 아직 달성한 실적이 아니다.\n원문: 이번 분기 목표는 문의 분류 기준을 통일하고 담당자를 지정해 평균 응답 시간을 2일에서 1일로 줄입니다.",
+    "acceptance": [
+      {
+        "criterion": "목표를 `줄이는 것입니다`처럼 설명하거나 `이번 분기에는 … 줄이려 합니다`처럼 행위 중심으로 재구성한다. 목표를 달성 사실로 바꾸지 않고 2일→1일을 유지한다.",
+        "source": "research/korean-public-language-sources.md 명사형 주제와 행동 서술의 불일치. B 31쪽; A 11쪽.",
+        "required": true,
+        "reason": "Regression case from research/korean-writing-evaluation.json; passed by the previous version in its record."
+      },
+      {
+        "criterion": "Exception: 보고서 제목 `평균 응답 시간 단축`은 명사형이어도 괜찮다. 모든 제목에 서술어를 추가할 필요는 없다.",
+        "source": "research/korean-public-language-sources.md 명사형 주제와 행동 서술의 불일치. B 31쪽; A 11쪽.",
+        "required": false,
+        "reason": "Allowed alternative recorded with the original case."
+      }
+    ]
+  },
+  {
+    "id": "KP03-regression",
+    "request": "다음 확정 맥락에 맞춰 업무 문장을 다듬어줘.\n확정 맥락: 비가 많이 오면 지하 창고로 물이 들어올 수 있고, 그 물 때문에 전원 장치가 손상될 수 있다는 두 단계 위험이다. 아직 사고는 발생하지 않았다.\n원문: 집중 호우 지하 창고 침수 전원 장치 손상 운영 중단 우려.",
+    "acceptance": [
+      {
+        "criterion": "호우→침수 가능성→전원 장치 손상 및 운영 중단 우려라는 관계를 읽을 수 있다. 확정 사고로 격상하지 않는다.",
+        "source": "research/korean-public-language-sources.md 명사 연쇄로 조건·원인·결과가 사라짐. A 21쪽·101쪽.",
+        "required": true,
+        "reason": "Regression case from research/korean-writing-evaluation.json; passed by the previous version in its record."
+      },
+      {
+        "criterion": "Exception: 표의 열이 이미 `조건 / 위험 / 영향`으로 나뉘면 각 칸의 짧은 명사구를 유지할 수 있다.",
+        "source": "research/korean-public-language-sources.md 명사 연쇄로 조건·원인·결과가 사라짐. A 21쪽·101쪽.",
+        "required": false,
+        "reason": "Allowed alternative recorded with the original case."
+      }
+    ]
+  },
+  {
+    "id": "KP08-regression",
+    "request": "다음 확정 맥락에 맞춰 업무 문장을 다듬어줘.\n확정 맥락: 분기 정산에 필수인 증빙 제출 안내다. 9월 20일 18시가 확정 마감이며 선택 제출이 아니다. 미제출 제재는 제공된 정보에 없다.\n원문: 증빙은 9월 20일 18시까지 반드시 제출할 것. 누락 없도록 철저를 기할 것.",
+    "acceptance": [
+      {
+        "criterion": "공손하면서 제출 필요성과 마감이 남아 있다. `가능하시면`, `편하실 때`로 약화하지 않는다. 제공되지 않은 불이익·법적 책임을 덧붙이지 않는다.",
+        "source": "research/korean-public-language-sources.md 고압적 요청과 의무 강도 보존. B 21–23쪽; A 23쪽.",
+        "required": true,
+        "reason": "Regression case from research/korean-writing-evaluation.json; passed by the previous version in its record."
+      },
+      {
+        "criterion": "Exception: 내부 점검표의 `증빙 제출 완료` 같은 항목을 존댓말로 바꿀 필요는 없다. 안전·준법 의무는 `해야 합니다`로 분명히 써도 된다.",
+        "source": "research/korean-public-language-sources.md 고압적 요청과 의무 강도 보존. B 21–23쪽; A 23쪽.",
+        "required": false,
+        "reason": "Allowed alternative recorded with the original case."
+      }
+    ]
+  }
+]

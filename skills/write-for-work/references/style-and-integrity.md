@@ -47,7 +47,7 @@ Prefer natural Korean order and direct business wording.
 - Replace vague technical nouns with the screen, action, file, behavior, or decision the reader can inspect.
 - Avoid compressed noun chains when a short sentence is clearer.
 - Keep domain terminology when precision matters, and explain it at first use for mixed audiences.
-- Use short declarative sentences in reports, but vary length enough to avoid mechanical rhythm.
+- Keep report sentences short and vary length enough to avoid mechanical rhythm. Shorten a sentence's content, not its register; see [plain-language.md](plain-language.md#register-and-sentence-endings).
 
 Avoid promotional certainty:
 
@@ -90,7 +90,7 @@ For Korean business writing, read [plain-language.md](plain-language.md). Apply 
 
 ## House-style restrictions
 
-Apply punctuation and typography restrictions only when the user, repository, organization, or selected profile requires them. Do not treat one person's preferences as universal writing rules.
+Apply punctuation and typography restrictions only when the user, repository, organization, or selected profile requires them. Do not treat one person's preferences as universal writing rules. The Korean punctuation and spacing signals in [plain-language.md](plain-language.md#korean-punctuation-and-spacing) are revision checks for the edited passage, not such a restriction.
 
 For Ricky's clean-writing profile:
 

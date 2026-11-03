@@ -4,13 +4,16 @@
 
 1. Decision rule
 2. Korean sentence repair
-3. Imported workplace jargon
-4. Stock Korean AI expressions
-5. Vague action words
-6. English AI expressions
-7. Structural habits
-8. Examples
-9. Adaptation sources
+3. Korean punctuation and spacing
+4. Register and sentence endings
+5. Matching a reference document
+6. Imported workplace jargon
+7. Stock Korean AI expressions
+8. Vague action words
+9. English AI expressions
+10. Structural habits
+11. Examples
+12. Adaptation sources
 
 ## Decision rule
 
@@ -50,6 +53,9 @@ These are synthetic examples, not mandatory substitutions:
 | 응답이 수신되어진다 | 응답을 받는다 | Who receives it; retain passive wording if that actor is unknown |
 | 오류가 발생할 수 있을 것으로 보인다 | 오류가 발생할 수 있다 | Uncertainty; never shorten this to "오류가 발생한다" |
 | 승인이 없는 경우에는 배포가 허용되지 않는다 | 승인 없이는 배포할 수 없다 | The negative condition and prohibition |
+| 새 엔진을 통하여 조회한다 | 새 엔진으로 조회한다 | The means; keep "통해" when it names a real channel or intermediary |
+| 기존 화면 대비 필터 구성이 상이하다 | 필터 구성이 기존 화면과 다르다 | The comparison target and direction |
+| 핵심이라 할 수 있다 | 핵심이다 | Only when the source supports the stronger claim; otherwise keep the hedge |
 | 확인하시어 회신을 부탁드립니다 | 확인 후 회신해 주세요 | Appropriate politeness; not a universal switch to casual speech |
 
 - Unpack noun chains into a subject and predicate when that clarifies the relationship. Keep an established noun such as "의존성 주입" rather than paraphrasing away its meaning.
@@ -60,6 +66,58 @@ These are synthetic examples, not mandatory substitutions:
 - Keep the document's chosen register consistent. Technical instructions may repeatedly end in "~한다"; vary wording only when it improves comprehension, not to satisfy a rhythm rule.
 - Read the Korean around code tokens on its own. Repair awkward particles or word order without translating the tokens.
 - Preserve meaningful contrasts, necessary passive voice, real lists of three, and caution in legal or safety text. None is an error merely because a model also uses it.
+
+## Korean punctuation and spacing
+
+These marks often signal translated or machine-styled Korean work prose. They are heuristics, not errors under 한글 맞춤법: review each one in the passage being edited and revise it unless one of the keep cases below applies.
+
+| Signal | Revise to |
+|---|---|
+| An em dash `—` that inserts an aside in a Korean sentence | A pair of commas, a colon, parentheses, or a separate sentence |
+| A spaced middle dot ` · ` separating ordinary list items | Commas, or a slash in compact labels |
+| Decorative `★`, emoji, or check marks used for emphasis | Delete; use the document's existing emphasis if emphasis is needed |
+| `÷`, `=`, or `×` standing in for a word inside a prose sentence | Words such as "~로 나눈 값", "~은/는" |
+| A space between Latin text, a number, a closing quote, or a code span and the particle or copula after it, such as `React 와`, `40,000 은`, `"제시" 에`, `` `maxRetry` 를 ``, `PoC 입니다` | Attach the particle: `React와`, `40,000은`, `"제시"에`, `` `maxRetry`를 ``, `PoC입니다` |
+| Doubled spaces used as separators, or curly and straight quotes mixed in one document | One separator; the document's existing quote style |
+
+Keep these:
+
+- A middle dot joining paired or grouped terms, such as `성능·품질`, `회원·비회원`, `결측·이상값`, or groups inside a comma-separated list. Under the 맞춤법 punctuation rules it is written without spaces, so when a spaced dot joins such a pair, remove the spaces and keep the dot. A single spaced dot separating two attributes of one item, such as `No.12 · 시범 운영`, is also acceptable.
+- An em dash that the 맞춤법 punctuation rules support: around an aside that itself contains a comma, before a subtitle, or where the source or reference document uses it consistently.
+- A dash or `—` in a table cell, `※` notes, and `→` or `▶` in flows and diagrams. A table dash can mean "not applicable", "none", or "not yet"; flag it when the meaning matters and the table does not define it. Flag `※` only when it is overused.
+- Emoji that carries product meaning or matches a requested voice, and math notation that is the content, such as `1920×1080`, `3×`, a KPI formula, or `n = 30`.
+- Every character inside code, commands, error text, identifiers, URLs, quoted source text, and formal names, even when it is one of the signals above.
+- The space before a noun or a bound noun. Only particles attach: `` `maxRetry` 값 ``, `API 서버`, `1시간 만에`, and `할 수 있다` keep their spaces.
+
+These are revision checks for the edited passage, not a house-style ban; see [style-and-integrity.md](style-and-integrity.md#house-style-restrictions).
+
+## Register and sentence endings
+
+A Korean register is the ending class an element uses: 개조식 noun or `~함`/`~임`/`~됨` endings, plain `~다`, polite `~습니다`, or `~요`. Korean work documents legitimately use all of them. 개조식 appears in bullets, tables, minutes, and slides, and also in the body paragraphs of design documents and reports. No ending class is a sign of machine writing.
+
+- When polishing, de-slopping, or making text "natural" (다듬기, AI 티 빼기, 자연스럽게), keep each element's register. Advice to write active, short, direct sentences shortens a sentence's content, not its ending: `정의함` stays `정의함`, a `~습니다` post stays `~습니다`, and 개조식 bullets stay bullets.
+- Change the register when the request or the reader requires it: the user names a register, the destination template or a supplied reference sets one, Restructure or Draft produces a different format (an email from 개조식 notes), or the source register is wrong for its reader (an external notice in commanding `~할 것` can become `~해 주시기 바랍니다`). Keep requirement strength and deadlines.
+- Repairing a predicate that does not fit its subject, such as "목표는 … 줄입니다" becoming "목표는 … 줄이는 것입니다", fixes grammar within the register and is not a register change.
+- If the source already mixes registers within one element type, keep them and point out the inconsistency unless the user asked to unify them.
+- When drafting without a template, prior edition, or sample, a common default is 개조식 for reports, minutes, tables, and slides, and `~합니다` for emails and notices.
+- A list of three requirements, a contrast that corrects a real misconception, and a necessary passive in a specification are content. English anti-AI rules against groups of three or "not X but Y" do not apply to them.
+
+## Matching a reference document
+
+When asked to match another chapter, an approved document, or an author's style, take the signature from the unedited reference and apply it element by element: the draft's headings follow the reference headings, its notes follow the reference notes, and so on. One document can end headings in nouns and notes in `~함`.
+
+Compare these features:
+
+| Feature | What to observe |
+|---|---|
+| Endings | Separately for headings, bullets, notes, table cells, and body text |
+| Punctuation | Dash, middle dot, parentheses, colon, quote style, spacing inside brackets |
+| List separators | Commas, slashes, `>`, numbering, or line breaks |
+| Particle density | Terse noun phrases or complete sentences with particles |
+| Terms | English spelling or Korean transliteration, attached spelling, parenthetical glosses |
+| Length and rhythm | One-line items or multi-clause sentences; for prose, paragraph length, first person, and how often paragraphs open with a connector |
+
+Matching changes form, not content: keep every fact, number, condition, and requirement strength from the draft. Apply the punctuation and spacing checks above to the draft, except where the reference itself consistently uses a mark; then follow the reference and say so. Matching means writing like the reference author, not making the draft more direct than the reference.
 
 ## Imported workplace jargon
 
@@ -143,9 +201,23 @@ Treat these as signals that the sentence may be adding weight without informatio
 | 원활하게 | State what completed without which problem. |
 | 본질적으로 | State the actual mechanism or definition. |
 | 무엇보다 | Keep only when a real priority order exists. |
-| 빠르게 변화하는 환경에서 | Name the specific change and date or remove it. |
+| 빠르게 변화하는 환경에서, ~하는 시대다, 그 어느 때보다 | Name the specific change and its evidence or date, or open with a concrete case. |
+| 본 보고서에서는 ~을 알아보고자 한다, 이상으로 ~을 살펴보았다 | Open with the main finding and end with the conclusion instead of announcing the recap. |
 
 Do not replace one empty abstraction with another. "시사하는 바가 크다" should not automatically become "중요한 인사이트를 제공한다".
+
+### In paragraph prose
+
+These signals apply to paragraph prose such as blog posts, essays, columns, and narrative retrospectives. They are judgment calls, not deletions to apply everywhere.
+
+| Signal | Check or rewrite | Keep when |
+|---|---|---|
+| 정말, 매우, 굉장히, 진정한 | Remove, or replace with a number the source already supplies. | It is a scale value or label, such as "영향도: 매우 높음" or "매우 만족 42%". |
+| Repeated ~라고 생각한다, ~라고 생각된다, ~라는 생각이 든다, ~라고 본다 | State directly what the source supports. | The claim is the author's opinion or unproven, especially a causal claim. |
+| ~의 중요성을 깨달았다, ~라는 교훈을 얻었다 as an ending | End with the changed behavior or fact the source already states. If the source states none, delete the sentence or ask; do not supply one. | The sentence states a specific lesson the text supports, as in a retrospective's "배운 점". |
+| 앞으로 ~하는 사람이 되겠다, ~해야 할 때다, 우리 모두의 과제다 as an ending | End with the source's concrete next action or open question, or on the last factual paragraph. | It is a real commitment with an action, owner, or date, such as "앞으로 매주 금요일에 공유하겠습니다". |
+| An opening quotation, proverb, or dictionary definition | Open with the situation, fact, or claim. | The quote is the subject, such as an error message in an incident report, or the definition is what the document documents. |
+| 오늘은 ~에 대해 알아보겠습니다, 그럼 시작해 볼까요?, 도움이 되셨길 바랍니다 | Start with the content. A replacement sentence that announces the topic, such as "~ 두 가지를 소개합니다", is the same opener. | A greeting or sign-off is part of a required template or the user's voice. |
 
 ## Vague action words
 
@@ -208,7 +280,7 @@ Check for patterns that make writing look generated even when individual sentenc
 - The introduction announces the document instead of giving the answer.
 - The conclusion repeats the introduction without a decision or next action.
 - Every section adds a closing slogan that repeats its last fact.
-- Prose repeatedly ends in noun fragments such as "근거 없음. 대안 없음." Combine related fragments into a sentence when that clarifies the relationship; keep useful table cells, status labels, or deliberate source voice.
+- Prose repeatedly breaks into noun fragments such as "근거 없음. 대안 없음." Combine related fragments into a sentence when that clarifies the relationship. Keep 개조식 sentences ending in `~함` or `~됨`, bullets, table cells, status labels, and fragments the author uses deliberately.
 - Headings, cards, callouts, and highlights all emphasize the same point.
 - Unknowns are hidden under "추후 검토" without stating what decision they affect.
 - The document alternates between inflated claims and broad disclaimers.
@@ -290,3 +362,5 @@ These are references, not runtime dependencies or proof of rewriting quality. Th
 The 2026-09-14 update uses [issue #2's adversarial review](https://github.com/chonamdoo/write-for-work/issues/2) as its supplied source for instruction clarity, evidence presentation, and document-purpose checks across this package. The referenced proposal was unavailable in the repository; its missing text was not reconstructed, and the issue's external-source attributions were not independently reverified. Exceptions for supported interpretation, clear pronouns, coupled actions, historical facts, real deadlines, and short mixed-purpose documents are this skill author's adaptations, not quoted source rules.
 
 Subsequent 2026-09-14 source-grounded evaluation informed narrower safeguards for technical simplification, sender commitments, and output shape. The technical distinction draws on [ABS: Correlation and causation](https://www.abs.gov.au/statistics/understanding-statistics/statistical-terms-and-concepts/correlation-and-causation), including its linear-relationship limits; commitment and output-shape safeguards are author-derived repairs to this skill's existing source and task boundaries. These are not a requirement to load research records at runtime or a claim of general writing-quality improvement.
+
+The 2026-11-03 update adapted Korean punctuation and spacing signals, register preservation, reference-document matching, and paragraph-prose clichés from [stop-slop-ko](https://github.com/leeandev/stop-slop-ko) (Copyright (c) 2026 leeandev, MIT License; commit `553be05`, reviewed 2026-11-03), mainly its `ko-slop-patterns.md`, `prose-patterns.md`, and `tone-extraction.md` references. The rules were rewritten for this skill; short example strings such as `"제시" 에`, `40,000 은`, `성능·품질`, and the blog greetings are reused from it. Its opinion rule was narrowed to fit this skill's evidence rules: an unsupported opinion is kept as a hedge instead of deleted or supported with added evidence, and its "keep only one opinion" limit was not adopted. Its prose clichés are limited here to paragraph prose with keep conditions for scale values, specific lessons, and real commitments. Its scanner script, hook, file-format editing recipes, and essay and cover-letter modes were not adopted. The punctuation and spacing keep cases follow 한글 맞춤법 ([text](https://korean.go.kr/kornorms/regltn/regltnView.do?regltn_code=0001&regltn_no=303), checked 2026-11-03): 제41항 for particles, 제42항 for bound nouns, and the 부록 문장 부호 rules for 줄표 and 가운뎃점.

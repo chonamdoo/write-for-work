@@ -1,6 +1,6 @@
 ---
 name: write-for-work
-description: Draft, rewrite, restructure, or review Korean and English work writing for documentation, PR descriptions, code comments and docstrings, business and strategy reports, decision memos, project updates, and public or social thread posts. Use when prose must become clearer, more natural, less AI-generated, less dependent on imported workplace jargon, or better matched to its reader while preserving facts, technical meaning, identifiers, and the author's voice. Also use for before-and-after comparisons, evidence audits, executive summaries, and plain-language conversion. Editing prose does not authorize code changes, new comments, or publication.
+description: Draft, rewrite, restructure, or review Korean and English work writing for documentation, PR descriptions, code comments and docstrings, business and strategy reports, decision memos, project updates, and public or social thread posts. Use when prose must become clearer, more natural, less AI-generated, less dependent on imported workplace jargon, or better matched to its reader or a reference document's style while preserving facts, technical meaning, identifiers, and the author's voice. Also use for before-and-after comparisons, evidence audits, executive summaries, and plain-language conversion. Editing prose does not authorize code changes, new comments, or publication.
 ---
 
 # Write for Work
@@ -63,7 +63,7 @@ Do not force every document into the same template. Keep structure only when it 
 
 - Match the source's appropriate level of formality instead of making every document conversational.
 - Use a supplied writing sample to match register and terminology, not to import its facts or opinions. Without one, keep the source's appropriate voice; natural Korean does not require casual speech.
-- Prefer concrete nouns, active verbs, and short declarative sentences.
+- Prefer concrete nouns, active verbs, and short declarative sentences. In Korean, this shortens a sentence's content, not its ending; when polishing, keep each element's register as described in [Register and sentence endings](references/plain-language.md#register-and-sentence-endings).
 - Use familiar Korean by default. Replace imported workplace jargon with the specific action, condition, result, or object it refers to.
 - Use the simplest accurate term. Explain required jargon at first use for non-technical readers.
 - Remove promotional weight, empty conclusions, vague attribution, repetitive transitions, mechanical groups of three, and decorative emphasis.
@@ -76,7 +76,7 @@ Do not force every document into the same template. Keep structure only when it 
 
 Read [references/style-and-integrity.md](references/style-and-integrity.md) when the source is translation-like, promotional, heavily AI-styled, contains sensitive factual claims, or uses tables, charts, or file-structure listings.
 
-For Korean work writing, read [references/plain-language.md](references/plain-language.md). Use its expressions as diagnostic signals, not as a blind replacement dictionary.
+For Korean work writing, read [references/plain-language.md](references/plain-language.md) for sentence repair, punctuation and spacing, register and sentence endings, reference matching, and jargon. Use its expressions as diagnostic signals, not as a blind replacement dictionary.
 
 ## Apply the document mode
 
@@ -110,7 +110,7 @@ When converting project experience into reusable guidance, keep only generalized
 
 - Return the revised content first.
 - For Compare, provide the original artifact, revised artifact, and a compact change table.
-- When review notes are requested, separate factual corrections from stylistic edits. Otherwise omit sentences that merely report what you changed or preserved, whether inline or separate. Keep qualifications or unresolved issues needed to make the deliverable trustworthy; do not routinely announce that you did not verify externally.
+- When review notes are requested, separate factual corrections from stylistic edits. Otherwise omit sentences that merely report what you changed or preserved, whether inline or separate. Keep qualifications or unresolved issues needed to make the deliverable trustworthy; do not routinely announce that you did not verify externally. Place any note after the artifact under a clear label or separator so it cannot be read as part of the artifact, for example as a `※` line on a slide.
 - Follow the requested output shape, including paragraph limits. Integrate necessary qualifications into that shape where possible; add a separate note only for a material unresolved issue that cannot be safely conveyed there.
 - Keep missing-information placeholders exact and mechanically replaceable, including in any completion instructions. If a link destination is unknown, retain an explicit plain-text placeholder rather than inventing a URL or wrapping it in broken Markdown. When a real destination is supplied, preserve it and use valid link syntax.
 - Do not add a generic preface, praise, closing summary, or offer to do more work.
@@ -129,4 +129,5 @@ Confirm all of the following:
 - Imported workplace jargon has been replaced with familiar wording unless it is a formal identifier or the audience's established term.
 - Stock AI transitions, inflated claims, and empty abstract nouns have been removed or made concrete.
 - The ending contains a real conclusion or next action, not generic optimism.
+- Korean registers follow [Register and sentence endings](references/plain-language.md#register-and-sentence-endings). Each Korean punctuation and spacing signal in the revised prose has been reviewed and revised unless a keep case applies.
 - Any user or house-style punctuation restrictions have been applied without corrupting verbatim source text, code, identifiers, or URLs.
