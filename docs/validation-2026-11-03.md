@@ -10,7 +10,7 @@ This update adds Korean punctuation and spacing signals, register preservation, 
 
 `references/modes.md` and the invocation policy are unchanged. No script, hook, or mode was added to the skill.
 
-Final skill hashes are in the [evidence record](../tests/behavior/evidence/2026-11-03-korean-slop/final.json) under `skill_sha256.new`; the previous version is `main` commit `a92a97e`.
+Final skill hashes are in the [evidence record](../tests/behavior/evidence/2026-11-03-korean-slop/final.json) under `skill_sha256.new`. The previous version is `main` commit `f3ae4a7`, which includes PR #4 (visual explanations and PR evidence rules). PR #4 reached `main` before this change merged, so the final round reran both versions on the merged files.
 
 ## Cases and criteria
 
@@ -33,31 +33,35 @@ All twelve are development cases chosen while writing this change, not held-out 
 
 ## Method
 
-Each run sent one case's `request` as the user message to the Oh My Pi completion API with the default session model; the API did not return the model identifier. The system prompt contained all four skill files and said the user had invoked the skill. Runs had no tools or history. Each version ran each case three times: 72 runs.
+Each run sent one case's `request` as the user message to the Oh My Pi completion API with the default session model; the API did not return the model identifier. The system prompt contained all four skill files and said the user had invoked the skill. Runs had no tools or history. Each version ran each case three times: 72 runs per round.
 
-[`checks.py`](../tests/behavior/checks.py) applies string checks to the revised artifact, excluding notes after it. Criteria a string cannot judge were judged by reading, with a reason stored per judgment; one string result was overridden with its reason. [`test_evaluation_evidence.py`](../tests/test_evaluation_evidence.py) recomputes the string checks from the stored outputs and checks the counts below.
+[`checks.py`](../tests/behavior/checks.py) applies string checks to the revised artifact, excluding notes after it. Criteria a string cannot judge were judged by reading, with a reason stored per judgment; one string result was overridden with its reason. [`test_evaluation_evidence.py`](../tests/test_evaluation_evidence.py) recomputes the string checks from the stored outputs of `final.json` and checks the counts below. GitHub Actions was unavailable for this change, so these checks ran locally only.
 
 ## Observed results
 
-| Version | Runs with every required criterion met | Advisory misses |
-| --- | --- | --- |
-| Previous | 31/36 | 8 |
-| Updated | 36/36 | 1 |
+Two rounds used the same cases and criteria. `pre-merge.json` compares `a92a97e` with the pre-merge files; `final.json` compares `f3ae4a7` with the merged files.
 
-Required failures in the previous version:
+| Round | Version | Runs with every required criterion met | Advisory misses |
+| --- | --- | --- | --- |
+| pre-merge | Previous (`a92a97e`) | 31/36 | 8 |
+| pre-merge | Updated | 36/36 | 1 |
+| final | Previous (`f3ae4a7`) | 33/36 | 7 |
+| final | Updated (merged) | 35/36 | 1 |
 
-- K6, 3/3 runs: `전송함`, `재처리함`, `반영됨` became `~한다` or `~된다`.
-- K2, 1/3: added "다만 같은 기간의 다른 변화가 영향을 줬을 가능성은 따로 확인하지 않았습니다", a claim the author never made, and a new closing recommendation. This change did not target that behavior; treat it as run-to-run variation.
-- KP08, 1/3: kept the commanding `~할 것` in a notice the case requires to be polite. The earlier record had this case passing; it varies between runs.
+Required failures:
 
-Advisory misses: the previous version split `성능·품질` (K1, 3/3), `회원·비회원` (K7, 2/3), and `수집 · 정제` (K9, 1/3) into two words, and opened K2 with a topic announcement in 2/3 runs. The updated version opened K2 with a topic announcement once.
+- K6, previous version, 3/3 runs in both rounds: `전송함`, `재처리함`, `반영됨` became `~한다` or `~된다`. This is the one consistent difference.
+- KP08: the previous version kept the commanding `~할 것` in 1/3 pre-merge runs; the updated version did so in 1/3 final runs, offering the polite wording only as an alternative for external recipients. The new register rule names this case, so it does not reliably prevent the failure; it varies between runs in both versions.
+- K2, previous version, 1/3 pre-merge runs: added "다만 같은 기간의 다른 변화가 영향을 줬을 가능성은 따로 확인하지 않았습니다", a claim the author never made. Not seen in the final round.
+
+Advisory misses: across both rounds the previous version split joined pairs into two words (`성능·품질` in K1 5/6, `회원·비회원` in K7 5/6, `수집 · 정제` in K9 1/6) and opened K2 with a topic announcement in 4/6 runs. The updated version opened K2 with the source's filler or a topic announcement in 2/6 runs.
 
 Other observations:
 
-- K8: every run in both versions kept "매우 높음", the lesson, and the Friday commitment. The keep conditions added for paragraph prose were not stressed by a version that already behaved this way.
-- K1: both versions flagged the undefined table `—` in 3/3 runs, after a separator. In the development round the updated draft had flagged it in 0/2; that draft called the dash "not applicable", which the final keep case no longer does.
-- KP08: the updated version added a note about the register change in 2/3 runs and a note about what it left out in 1/3. These notes are longer than the output-behavior rules intend.
-- KP03: the updated version kept the source's noun-ending style (`~음`); the previous version wrote `~다` or `~습니다`. Both meet the criterion.
+- K8: every run in both versions and rounds kept "매우 높음", the lesson, and the Friday commitment. The keep conditions added for paragraph prose were not stressed by a version that already behaved this way.
+- K1: in the pre-merge round both versions flagged the undefined table `—` in 3/3 runs. In the development round the updated draft had flagged it in 0/2; that draft called the dash "not applicable", which the final keep case no longer does.
+- KP08 and KP03: the updated version often adds a `※` note after a separator about a register change or an unverified consequence. These notes are longer than the output-behavior rules intend.
+- KP03: the updated version keeps the source's noun-ending style (`~음`); the previous version writes `~다` or `~습니다`. Both meet the criterion.
 
 ## Review
 

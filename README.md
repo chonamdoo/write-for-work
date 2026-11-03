@@ -61,7 +61,7 @@ Files use the [Agent Skills format](https://agentskills.io/specification). Share
 
 The [2026-11-03 validation record](docs/validation-2026-11-03.md) compares the previous and updated skill on twelve synthetic Korean cases, three runs each. The earlier evaluation materials remain in [`research/`](research/).
 
-The updated version met every required criterion in 36 of 36 runs; the previous version did in 31 of 36. Most of the difference is one case: asked to make a 개조식 design-document body "natural", the previous version changed `~함` to `~한다` in all three runs. The previous version also split joined pairs such as `성능·품질` (an advisory criterion). That case and the pair cases were added during development after earlier cases showed no difference. These are development results from one host and model, judged by string checks and an agent's reading, not proof of general writing quality. Automatic skill selection was not tested.
+On the merged files, the updated version met every required criterion in 35 of 36 runs and the previous `main` in 33 of 36 (an earlier pre-merge round: 36 and 31). The one consistent difference: asked to make a 개조식 design-document body "natural", the previous version changed `~함` to `~한다` in all three runs of both rounds. The previous version also split joined pairs such as `성능·품질` (an advisory criterion). Both versions occasionally kept a commanding `~할 것` in a notice that should be polite. That case and the pair cases were added during development after earlier cases showed no difference. These are development results from one host and model, judged by string checks and an agent's reading, not proof of general writing quality. Automatic skill selection was not tested.
 
 ## Package layout
 
