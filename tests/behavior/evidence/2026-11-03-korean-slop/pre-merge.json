@@ -39,7 +39,8 @@
     "K2: the opener criterion was clarified to cover any sentence announcing the topic and made advisory; the earlier criterion \"removes the unsupported 많은 분들 claim\" was dropped because the skill allows keeping or narrowing an author claim.",
     "K6: the fact criterion now also requires not stating how often the report is generated, after review found \"하루 1회 생성되는 정산 리포트\" in a development run.",
     "K1 and K7 joined-pair criteria became advisory because the 맞춤법 norm also allows a comma or 와.",
-    "K7 criterion 3 (note separation) was added after review observed ※ notes directly under slide bullets."
+    "K7 criterion 3 (note separation) was added after review observed ※ notes directly under slide bullets.",
+    "2026-11-04 correction: the K6 criterion 1 string check missed '하루 1회 작성하는 정산 리포트'. The corrected check rejects 생성, 작성, 발행, 만들, 나오, or 집계 anywhere in the artifact (none occurs in the source). String checks, judgments, required_pass, and summary were recomputed from the stored outputs; only criterion 1 of K6 changed, from pass to fail, in new repeat 2 (final round) and old repeat 1 (both rounds)."
   ],
   "runs": [
     {
@@ -1067,7 +1068,7 @@
       "output": "3.2 데이터 동기화\n\n이 시스템은 주문 데이터를 5분마다 ERP로 전송한다. 전송에 실패하면 최대 3회까지 재시도한다. 3회 모두 실패한 건은 별도 큐에 쌓이며, 운영자가 이를 수동으로 재처리한다. 재처리 결과는 하루 1회 작성하는 정산 리포트에 반영한다.",
       "string_checks": {
         "0": false,
-        "1": true
+        "1": false
       },
       "judgments": {
         "0": {
@@ -1076,7 +1077,7 @@
           "required": true
         },
         "1": {
-          "judgment": "pass",
+          "judgment": "fail",
           "method": "string",
           "required": true
         }
@@ -2191,5 +2192,30 @@
       },
       "required_pass": false
     }
-  ]
+  ],
+  "design": {
+    "variants": [
+      "new",
+      "old"
+    ],
+    "cases": [
+      "K1-gaejosik-deslop",
+      "K2-blog-prose",
+      "K3-clean-spec",
+      "K4-tone-match",
+      "K5-pr-verbatim",
+      "K6-gaejosik-body-natural",
+      "K7-slide-symbols",
+      "K8-retro-keep",
+      "K9-punct-keep",
+      "KP02-regression",
+      "KP03-regression",
+      "KP08-regression"
+    ],
+    "repeats": [
+      1,
+      2,
+      3
+    ]
+  }
 }

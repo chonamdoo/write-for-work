@@ -35,7 +35,7 @@ All twelve are development cases chosen while writing this change, not held-out 
 
 Each run sent one case's `request` as the user message to the Oh My Pi completion API with the default session model; the API did not return the model identifier. The system prompt contained all four skill files and said the user had invoked the skill. Runs had no tools or history. Each version ran each case three times: 72 runs per round.
 
-[`checks.py`](../tests/behavior/checks.py) applies string checks to the revised artifact, excluding notes after it. Criteria a string cannot judge were judged by reading, with a reason stored per judgment; one string result was overridden with its reason. [`test_evaluation_evidence.py`](../tests/test_evaluation_evidence.py) recomputes the string checks from the stored outputs of `final.json` and checks the counts below. GitHub Actions was unavailable for this change, so these checks ran locally only.
+[`checks.py`](../tests/behavior/checks.py) applies string checks to the revised artifact, excluding notes after it. Criteria a string cannot judge were judged by reading, with a reason stored per judgment; one string result was overridden with its reason. [`test_evaluation_evidence.py`](../tests/test_evaluation_evidence.py) recomputed the string checks from the stored outputs of `final.json` and checked the counts below. Since 2026-11-04 it recomputes string checks only for the latest record and checks this record's run matrix, judgments, and counts as stored. GitHub Actions was unavailable for this change, so these checks ran locally only.
 
 ## Observed results
 
@@ -46,11 +46,14 @@ Two rounds used the same cases and criteria. `pre-merge.json` compares `a92a97e`
 | pre-merge | Previous (`a92a97e`) | 31/36 | 8 |
 | pre-merge | Updated | 36/36 | 1 |
 | final | Previous (`f3ae4a7`) | 33/36 | 7 |
-| final | Updated (merged) | 35/36 | 1 |
+| final | Updated (merged) | 34/36 | 1 |
+
+2026-11-04 correction: the K6 string check missed `하루 1회 작성하는 정산 리포트` in the updated version's final repeat 2. Recomputed from the stored outputs, that run fails K6 criterion 1, so the updated final count is 34/36, not the 35/36 first reported. The previous version's K6 repeat 1 also fails that criterion in both rounds; its counts do not change because the run already failed. See the [2026-11-04 record](validation-2026-11-04.md#evaluation-corrections).
 
 Required failures:
 
 - K6, previous version, 3/3 runs in both rounds: `전송함`, `재처리함`, `반영됨` became `~한다` or `~된다`. This is the one consistent difference.
+- K6, updated version, 1/3 final runs: `하루 1회 작성하는 정산 리포트` stated how often the report is written (found 2026-11-04).
 - KP08: the previous version kept the commanding `~할 것` in 1/3 pre-merge runs; the updated version did so in 1/3 final runs, offering the polite wording only as an alternative for external recipients. The new register rule names this case, so it does not reliably prevent the failure; it varies between runs in both versions.
 - K2, previous version, 1/3 pre-merge runs: added "다만 같은 기간의 다른 변화가 영향을 줬을 가능성은 따로 확인하지 않았습니다", a claim the author never made. Not seen in the final round.
 

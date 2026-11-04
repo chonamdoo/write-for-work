@@ -1,10 +1,12 @@
 # Document modes
 
-Use one primary mode. Apply another mode only for a specific section that genuinely needs it.
+Use one primary mode. Apply another mode only for a specific section that genuinely needs it. If no listed mode fits, such as a short message or notice, use the shared checks in [SKILL.md](../SKILL.md) without forcing a mode.
+
+The requested operation, format, and evidence boundary take priority over mode preferences. For Rewrite, keep the source structure unless the user authorizes restructuring. A mode's section lists and ending prescriptions apply when drafting or restructuring; its preservation and accuracy checks apply in every operation, including Rewrite and Review. Neither authorizes new decisions, commitments, success criteria, or experiments.
 
 For reader-directed procedures and requests in any mode:
 
-- Give one independently executable instruction per sentence in the document's register. Keep coupled actions together when splitting would lose simultaneity, such as holding a key while selecting a file. Preserve the actor and whether the source requires, recommends, permits, or prohibits the action; a system requirement is not automatically a command to the reader.
+- Give one independently executable instruction per sentence in the document's register; rewrite a command addressed to the people who must act as described in [plain-language.md](plain-language.md#register-and-sentence-endings). Keep coupled actions together when splitting would lose simultaneity, such as holding a key while selecting a file. Preserve the actor and whether the source requires, recommends, permits, or prohibits the action; a system requirement is not automatically a command to the reader.
 - Put execution-governing conditions and exceptions before the affected action, not before unrelated earlier steps. Preserve evaluation time, order, and shared scope: upload failure governs retry after upload, not whether to start the upload. Keep exact command syntax.
 - Replace procedural difficulty claims such as "간단히", "쉽게", "그냥", "simply", or "easy" with the actual action. Preserve exact UI labels, operational deadlines, and sourced timing or technical descriptions.
 
@@ -108,8 +110,8 @@ Optimize for a decision under uncertainty.
 - Separate technical feasibility from customer demand, unit economics, legal readiness, and operational readiness.
 - Replace absolute competitive claims with dated, sourced comparisons or verification tasks.
 - Show one usable planning number when the evidence supports it. Put sensitivity ranges in a table.
-- Convert the plan into decision stages with clear success criteria instead of using a generic phase plan.
-- End with the decision requested and the smallest tests that reduce uncertainty.
+- Convert the plan into decision stages with the success criteria the source supplies instead of using a generic phase plan.
+- End with the decision requested and the smallest tests that reduce uncertainty when the source supports them; do not invent them.
 
 Useful structure:
 
@@ -156,7 +158,7 @@ Optimize for comprehension and credibility in a short reading session.
 - Keep uncertainty where it matters.
 - Remove report metadata, internal path names, and implementation detail that do not help the public reader.
 - Avoid manufactured controversy, engagement bait, rhetorical questions, and "agree?" endings.
-- End with the implication, lesson, or concrete next step.
+- End with the implication, lesson, or concrete next step the source supports; if it supplies none, end on the last supported point.
 
 For a multi-post thread:
 
@@ -165,6 +167,6 @@ For a multi-post thread:
 3. Evidence or example
 4. Interpretation
 5. Limit or tradeoff
-6. Takeaway
+6. Takeaway, when the source supports one
 
 Use only as many posts as the content needs. Do not force a numbered sequence or a fixed count.
