@@ -29,7 +29,7 @@
     },
     "new": {
       "runs": 36,
-      "required_pass": 35,
+      "required_pass": 34,
       "advisory_fail": 1
     }
   },
@@ -40,7 +40,8 @@
     "K6: the fact criterion now also requires not stating how often the report is generated, after review found \"하루 1회 생성되는 정산 리포트\" in a development run.",
     "K1 and K7 joined-pair criteria became advisory because the 맞춤법 norm also allows a comma or 와.",
     "K7 criterion 3 (note separation) was added after review observed ※ notes directly under slide bullets.",
-    "No criterion changed between pre-merge.json and this record; this rerun compares against f3ae4a7 because PR #4 reached main before PR #5 merged."
+    "No criterion changed between pre-merge.json and this record; this rerun compares against f3ae4a7 because PR #4 reached main before PR #5 merged.",
+    "2026-11-04 correction: the K6 criterion 1 string check missed '하루 1회 작성하는 정산 리포트'. The corrected check rejects 생성, 작성, 발행, 만들, 나오, or 집계 anywhere in the artifact (none occurs in the source). String checks, judgments, required_pass, and summary were recomputed from the stored outputs; only criterion 1 of K6 changed, from pass to fail, in new repeat 2 (final round) and old repeat 1 (both rounds). Previous new final count: 35/36."
   ],
   "runs": [
     {
@@ -1021,7 +1022,7 @@
       "output": "3.2 데이터 동기화\n본 시스템은 주문 데이터를 5분마다 ERP로 전송함. 전송에 실패하면 최대 3회 재시도하고, 3회 모두 실패한 건은 별도 큐에 넣어 운영자가 수동으로 재처리함. 재처리 결과는 하루 1회 작성하는 정산 리포트에 반영됨.",
       "string_checks": {
         "0": true,
-        "1": true
+        "1": false
       },
       "judgments": {
         "0": {
@@ -1030,12 +1031,12 @@
           "required": true
         },
         "1": {
-          "judgment": "pass",
+          "judgment": "fail",
           "method": "string",
           "required": true
         }
       },
-      "required_pass": true
+      "required_pass": false
     },
     {
       "variant": "new",
@@ -1067,7 +1068,7 @@
       "output": "**3.2 데이터 동기화**\n\n시스템은 5분마다 주문 데이터를 ERP로 보낸다. 전송에 실패하면 최대 3회까지 다시 시도한다. 3회 모두 실패한 건은 별도 큐에 쌓이고, 운영자가 수동으로 다시 처리한다. 재처리 결과는 하루 한 번 작성하는 정산 리포트에 반영된다.\n\n---\n\n**확인이 필요한 점**\n\n\"3회까지 재시도\"와 \"3회 모두 실패\"를 함께 읽으면 시도 횟수가 두 가지로 해석됩니다.\n\n- 첫 전송 1회와 재시도 3회를 합쳐 총 4회 시도한다.\n- 첫 전송을 포함해 총 3회 시도한다.\n\n원문에는 어느 쪽인지 근거가 없어 표현을 그대로 두었습니다. 설계서에서는 \"최초 전송 후 최대 N회 재시도\"처럼 총 시도 횟수가 드러나게 적어 두면 구현과 테스트 기준이 명확해집니다.",
       "string_checks": {
         "0": false,
-        "1": true
+        "1": false
       },
       "judgments": {
         "0": {
@@ -1076,7 +1077,7 @@
           "required": true
         },
         "1": {
-          "judgment": "pass",
+          "judgment": "fail",
           "method": "string",
           "required": true
         }
@@ -2192,5 +2193,30 @@
       },
       "required_pass": true
     }
-  ]
+  ],
+  "design": {
+    "variants": [
+      "new",
+      "old"
+    ],
+    "cases": [
+      "K1-gaejosik-deslop",
+      "K2-blog-prose",
+      "K3-clean-spec",
+      "K4-tone-match",
+      "K5-pr-verbatim",
+      "K6-gaejosik-body-natural",
+      "K7-slide-symbols",
+      "K8-retro-keep",
+      "K9-punct-keep",
+      "KP02-regression",
+      "KP03-regression",
+      "KP08-regression"
+    ],
+    "repeats": [
+      1,
+      2,
+      3
+    ]
+  }
 }

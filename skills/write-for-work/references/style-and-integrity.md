@@ -66,7 +66,7 @@ Avoid promotional certainty:
 - Do not force groups of three.
 - Repeat the clearest noun instead of cycling through synonyms.
 - Remove chatbot framing, generic praise, filler, stacked hedging, and optimistic closing language.
-- Use sentence case for headings unless a style guide requires otherwise.
+- Use sentence case for new or rewritten headings unless a style guide or the document's existing headings consistently use another case. Do not recase headings you were not asked to edit.
 
 ## Structure and typography
 

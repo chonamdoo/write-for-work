@@ -1,0 +1,3600 @@
+{
+  "date": "2026-11-04",
+  "host": "Oh My Pi completion API (stateless, no tools, no history)",
+  "model": "executor: session default model selection; reading judge: the API's \"slow\" model selection; exact model identifiers not returned by the API",
+  "executor_system_prompt": "You are a writing assistant. The user has explicitly invoked the skill package below. Follow SKILL.md and read its referenced files from the package as instructed. You have no tools; return the response you would give the user.\n\n<skill-package name=\"write-for-work\">\n<skill files concatenated as <file path=...> blocks>\n</skill-package>",
+  "executor_user_message": "cases.json request field only; acceptance withheld",
+  "judge": {
+    "system": "You are a strict, fair evaluator of Korean/English work-writing outputs. Judge ONLY the given criterion against the response. The response comes from an assistant asked to edit text; treat any note after the edited text as part of the full response. Pass legitimate alternatives the criterion allows; fail only on a real violation. Use not-applicable only when the criterion's applicability condition is false. Give a one-sentence reason in English quoting the decisive words.",
+    "input": "case request, full response, one criterion with its source and reason; variant withheld",
+    "applies_to": "criteria with reading_required or without a string check; a failed string check fails a string+reading criterion before reading"
+  },
+  "cases_sha256": "f4620ef29db377662a7d11e1d613711ae75600a332d88d25aaa13071236b2b37",
+  "checks_sha256": "1158025257eddf83a8a78a352af48aab871431ebba7d70c557803e70d4223617",
+  "skill_sha256": {
+    "old": {
+      "SKILL.md": "7b7b3b3df106cdb529a6cb479ffbcb656f259e7e87b20a3b96a1200fe6f62063",
+      "references/modes.md": "e419b46b4dad883405a282d25880efff8bf48f7c5adfb0bbbb2590668dd38947",
+      "references/plain-language.md": "299ec1600c7bdba067759ef0f299039877342681af242b9ef41d90ab565da99e",
+      "references/style-and-integrity.md": "d248316919343937736b81116edc733d2f68f7ad1dd70f0d98d4a63e7086d0bf"
+    },
+    "new": {
+      "SKILL.md": "760f4efb3bd7c6bd49bfd1b0388952c692b263ef21478194594cfa05cdb06fc3",
+      "references/modes.md": "a9c231692ab49543175893fa51555585b2b522695107c6ac5b8482a8c4769864",
+      "references/plain-language.md": "7b5d00ace163f41342f47aabf958ee8483ca1787595de918f7d98ca375b3d2a8",
+      "references/style-and-integrity.md": "931269b3a42a56eac1a79fd405a54acb0b72aede11e8b9c2336763a77b250c90"
+    }
+  },
+  "old_ref": "main fea72ad",
+  "check_implementation": "tests/behavior/checks.py",
+  "design": {
+    "variants": [
+      "new",
+      "old"
+    ],
+    "cases": [
+      "K1-gaejosik-deslop",
+      "K2-blog-prose",
+      "K3-clean-spec",
+      "K4-tone-match",
+      "K5-pr-verbatim",
+      "K6-gaejosik-body-natural",
+      "K7-slide-symbols",
+      "K8-retro-keep",
+      "K9-punct-keep",
+      "KP02-regression",
+      "KP03-regression",
+      "KP08-regression",
+      "N1-internal-notice-command",
+      "N2-checklist-keep",
+      "N3-email-register",
+      "N4-modifier-scope",
+      "N5-gaejosik-to-prose",
+      "N6-review-only",
+      "N7-rewrite-keep-structure",
+      "N8-note-not-asterisk",
+      "N9-slot-input",
+      "N10-added-claims"
+    ],
+    "repeats": [
+      1,
+      2,
+      3
+    ]
+  },
+  "summary": {
+    "old": {
+      "runs": 66,
+      "required_pass": 59,
+      "advisory_fail": 0
+    },
+    "new": {
+      "runs": 66,
+      "required_pass": 66,
+      "advisory_fail": 0
+    }
+  },
+  "criteria_revisions": [
+    "K1-KP08 criteria are unchanged from the 2026-11-03 record; reading_required flags were added to K2 criterion 3, K6 criterion 1, and K7 criterion 2 before these runs.",
+    "N1-N10 were written before any run. After the second adversarial review and before these runs, N3 and N9 requests were changed so they no longer repeat skill example sentences, N2/N5/N8 criteria were widened to accept legitimate alternatives, and their string checks were corrected.",
+    "N1 uses the KP08 source text without its context; it is not independent of KP08."
+  ],
+  "runs": [
+    {
+      "variant": "new",
+      "case": "K1-gaejosik-deslop",
+      "repeat": 1,
+      "output": "## 3. 검색 개선 현황\n- 신규 검색 엔진으로 PostgreSQL에서 12,000건 목록 조회 시간을 2.4초에서 0.6초로 단축함(사내 시험 환경 기준)\n- 주요 변경: 색인 재구성, 자동완성 추가, 오타 보정 적용\n- 필터 구성이 기존 화면과 달라 사용자 안내가 필요함\n- 성능·품질 지표는 다음 주 운영 환경에서 재측정 예정임\n- 담당 조직 간 일정 조율에 확인 절차가 추가됨\n\n| 항목 | 운영 반영 |\n|---|---|\n| 색인 재구성 | 완료 |\n| 오타 보정 | — |\n\n검토 메모: 표의 오타 보정 행 `—`는 '미반영', '해당 없음', '예정' 중 어느 뜻인지 표에 정의되어 있지 않습니다. 실제 상태를 확인해 적어 주세요.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K1-gaejosik-deslop",
+      "repeat": 2,
+      "output": "## 3. 검색 개선 현황\n- 신규 검색 엔진으로 PostgreSQL에서 12,000건 목록 조회 시간을 2.4초에서 0.6초로 단축함(사내 시험 환경 기준)\n- 주요 변경: 색인 재구성, 자동완성 추가, 오타 보정 적용\n- 필터 구성이 기존 화면과 달라 사용자 안내가 필요함\n- 성능·품질 지표는 다음 주 운영 환경에서 재측정 예정임\n- 담당 조직 간 일정 조율에 확인 절차가 추가됨\n\n| 항목 | 운영 반영 |\n|---|---|\n| 색인 재구성 | 완료 |\n| 오타 보정 | — |\n\n검토 메모: 표의 오타 보정 \"운영 반영\" 칸 `—`가 미반영, 해당 없음, 진행 중 중 무엇인지 확인해서 적어 주세요.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K1-gaejosik-deslop",
+      "repeat": 3,
+      "output": "## 3. 검색 개선 현황\n- 신규 검색 엔진으로 PostgreSQL에서 12,000건 목록 조회 시간을 2.4초에서 0.6초로 단축함(사내 시험 환경 기준)\n- 주요 변경: 색인 재구성, 자동완성 추가, 오타 보정 적용\n- 필터 구성이 기존 화면과 달라 사용자 안내가 필요함\n- 성능·품질 지표는 다음 주 운영 환경에서 재측정 예정임\n- 담당 조직 간 일정을 조율할 때 확인 절차가 추가됨\n\n| 항목 | 운영 반영 |\n|---|---|\n| 색인 재구성 | 완료 |\n| 오타 보정 | — |\n\n검토 메모: 표의 오타 보정 행 `—`가 \"미반영\", \"해당 없음\", \"진행 중\" 중 무엇인지 표에 정의되어 있지 않으니 확인 후 실제 상태로 적어 주세요.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K2-blog-prose",
+      "repeat": 1,
+      "output": "저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다. 이 절차가 생긴 뒤 롤백은 분기당 4회에서 1회로 줄었습니다. 저는 이 변화가 체크리스트 덕분이라고 생각합니다.\n\n머지하려면 리뷰어 두 명의 승인도 받아야 합니다. 번거롭게 느껴질 수 있지만, 저는 이 규칙이 필요하다고 생각합니다.\n\n검토 메모:\n- \"정말 많은 분들이 헷갈려 하시는 부분입니다\"는 근거가 없어 뺐습니다. 실제로 받은 질문이나 사례가 있다면 그 내용으로 다시 넣어 주세요.\n- \"협업의 중요성을 깨달았습니다\"는 본문에 이어지는 내용이 없어 뺐습니다. 이 결론을 살리려면 두 사람 승인 규칙으로 무엇이 달라졌는지 구체적인 사례가 필요합니다.",
+      "string_checks": {
+        "0": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The edited post skips any announcement of what it will cover and opens straight on content with \"저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다.\" Nothing like \"알아보겠습니다\" or \"~를 소개합니다\" replaces the removed intro."
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edit keeps the link framed as the author's belief with \"저는 이 변화가 체크리스트 덕분이라고 생각합니다\", so it does not present it as a confirmed cause."
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K2-blog-prose",
+      "repeat": 2,
+      "output": "저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다. 이 절차가 생긴 뒤 롤백은 분기당 4회에서 1회로 줄었습니다. 이것이 체크리스트 덕분이라고 생각합니다.\n\n머지하려면 리뷰어 두 명의 승인도 받아야 합니다. 번거로울 수 있지만, 저는 이 규칙이 필요하다고 생각합니다.\n\n검토 메모:\n- \"정말 많은 분들이 헷갈려 하시는 부분\"은 근거가 없어 삭제했습니다. 실제 문의나 사례가 있다면 그 내용을 넣어 주세요.\n- \"협업의 중요성을 깨달았습니다\"는 본문이 뒷받침하지 않아 삭제했습니다. 이번 경험으로 팀에서 실제로 바뀐 점이 있다면 그 내용으로 마무리하면 됩니다.\n- 글에서 \"체크리스트\"가 무엇을 담고 있는지 설명하지 않습니다. 스테이징 실행과 리뷰 승인 두 가지가 전부인지 확인해 주세요.",
+      "string_checks": {
+        "0": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The edited post opens straight into content with \"저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다.\" It drops \"오늘은 배포 전 체크리스트에 대해 알아보겠습니다\" and does not add any replacement sentence announcing what the post will cover."
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edit keeps the line \"이것이 체크리스트 덕분이라고 생각합니다,\" so the drop in rollbacks is still presented as the author's belief and not as a confirmed cause."
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K2-blog-prose",
+      "repeat": 3,
+      "output": "저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다. 이 절차가 생긴 뒤 롤백은 분기당 4회에서 1회로 줄었습니다. 저는 이 변화가 체크리스트 덕분이라고 봅니다.\n\n머지하려면 리뷰어 두 명의 승인도 받아야 합니다. 번거롭게 느껴질 수 있지만, 저는 이 규칙이 필요하다고 생각합니다.\n\n검토 메모:\n- \"정말 많은 분들이 헷갈려 하시는 부분\"은 근거가 없어 뺐습니다. 실제 문의나 사례가 있다면 그 내용으로 다시 넣을지 정해 주세요.\n- \"협업의 중요성을 깨달았습니다\"는 본문에 그 근거가 될 사례가 없어 뺐습니다. 이 경험 뒤 팀에서 실제로 바뀐 점이 있다면 그것으로 마무리 문장을 쓸 수 있습니다.\n- 리뷰어 2인 승인 규칙이 왜 필요한지 이유가 빠져 있습니다. 이 규칙으로 막은 문제가 있다면 추가할지 정해 주세요.",
+      "string_checks": {
+        "0": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The edited post begins directly with content (\"저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다\"), cuts \"오늘은 배포 전 체크리스트에 대해 알아보겠습니다\", and does not swap in any other sentence announcing what the post will cover."
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response says \"저는 이 변화가 체크리스트 덕분이라고 봅니다,\" so the checklist-to-fewer-rollbacks link stays the author's own view and is never stated as a confirmed cause."
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K3-clean-spec",
+      "repeat": 1,
+      "output": "- 로그인 실패는 5회까지 허용하고, 6회째에는 계정을 30분 잠근다.\n- 비밀번호는 12자 이상이며 영문 대문자, 영문 소문자, 숫자를 모두 포함한다.\n- 잠금 해제는 본인 인증 또는 관리자 승인으로만 할 수 있다.\n※ 잠금은 IP 차단이 아니라 계정 단위 제한이다.\n\n검토 메모: 고칠 AI 티 표현이 없어 원문을 그대로 두었습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K3-clean-spec",
+      "repeat": 2,
+      "output": "- 로그인 실패는 5회까지 허용하고, 6회째에는 계정을 30분 잠근다.\n- 비밀번호는 12자 이상이며 영문 대문자, 영문 소문자, 숫자를 모두 포함한다.\n- 잠금 해제는 본인 인증 또는 관리자 승인으로만 할 수 있다.\n※ 잠금은 IP 차단이 아니라 계정 단위 제한이다.\n\n검토 메모: 고칠 만한 AI 티 나는 표현이 없어 원문을 그대로 두었습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K3-clean-spec",
+      "repeat": 3,
+      "output": "- 로그인 실패는 5회까지 허용하고, 6회째에는 계정을 30분 잠근다.\n- 비밀번호는 12자 이상이며 영문 대문자, 영문 소문자, 숫자를 모두 포함한다.\n- 잠금 해제는 본인 인증 또는 관리자 승인으로만 할 수 있다.\n※ 잠금은 IP 차단이 아니라 계정 단위 제한이다.\n\n검토 메모: 고칠 만한 AI 티 표현이 없어 원문을 그대로 두었습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K4-tone-match",
+      "repeat": 1,
+      "output": "### 4.1 환불 처리 흐름\n- 환불 요청은 고객센터 화면, 앱, 웹에서 접수 가능\n- 접수 후 24시간 안에 검토\n- 승인된 환불은 원래 결제 수단으로 되돌림\n※ 부분 환불은 관리자 승인이 필요함.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K4-tone-match",
+      "repeat": 2,
+      "output": "### 4.1 환불 처리 흐름\n- 환불 요청은 고객센터 화면, 앱, 웹에서 접수 가능\n- 접수 후 24시간 안에 검토\n- 승인된 환불은 원래 결제 수단으로 반환\n※ 부분 환불은 관리자 승인이 필요함.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K4-tone-match",
+      "repeat": 3,
+      "output": "### 4.1 환불 처리 흐름\n- 환불 요청은 고객센터 화면, 앱, 웹에서 접수 가능\n- 접수 후 24시간 안에 검토\n- 승인된 환불은 원래 결제 수단으로 반환\n※ 부분 환불은 관리자 승인이 필요함.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K5-pr-verbatim",
+      "repeat": 1,
+      "output": "오류 메시지 `Retry limit — exceeded`가 나오면 결제 재시도 횟수를 `maxRetry` 값으로 제한하도록 수정했습니다. 테스트는 로컬에서만 실행했습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K5-pr-verbatim",
+      "repeat": 2,
+      "output": "결제 재시도 횟수를 `maxRetry` 값으로 제한하도록 수정했습니다. 오류 메시지 `Retry limit — exceeded`가 나올 때 적용됩니다. 테스트는 로컬에서만 실행했습니다.\n\n검토 메모: 원문만으로는 `Retry limit — exceeded`가 재시도를 제한하게 만드는 조건인지, 제한에 도달한 뒤 나오는 결과인지 분명하지 않습니다. 실제 동작에 맞는 쪽으로 확인해 주세요.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K5-pr-verbatim",
+      "repeat": 3,
+      "output": "오류 메시지 `Retry limit — exceeded`가 나올 때 결제 재시도 횟수를 `maxRetry` 값으로 제한하도록 수정했습니다. 테스트는 로컬에서만 실행했습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K6-gaejosik-body-natural",
+      "repeat": 1,
+      "output": "3.2 데이터 동기화\n본 시스템은 주문 데이터를 5분 주기로 ERP에 전송함. 전송 실패 시 3회까지 재시도하며, 3회 모두 실패한 건은 별도 큐에 적재하여 운영자가 수동으로 재처리함. 재처리 결과는 일 1회 정산 리포트에 반영됨.\n\n검토 메모: 원문이 이미 간결하고 명확해 고칠 곳이 없어 그대로 두었습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps the original wording, including \"5분 주기\", \"3회까지 재시도\", \"별도 큐에 적재\", \"운영자가 수동으로 재처리\", and \"재처리 결과는 일 1회 정산 리포트에 반영됨\", and it does not add anything about how often the report is generated."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K6-gaejosik-body-natural",
+      "repeat": 2,
+      "output": "3.2 데이터 동기화\n본 시스템은 주문 데이터를 5분마다 ERP로 전송함. 전송에 실패하면 최대 3회 재시도하고, 3회 모두 실패한 건은 별도 큐에 적재해 운영자가 수동으로 재처리함. 재처리 결과는 일 1회 정산 리포트에 반영됨.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps \"5분마다\", \"최대 3회 재시도\", \"별도 큐\", and \"수동으로 재처리\", and it repeats the source's \"재처리 결과는 일 1회 정산 리포트에 반영됨\" word for word, so it never says how often the report itself is generated."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K6-gaejosik-body-natural",
+      "repeat": 3,
+      "output": "3.2 데이터 동기화\n본 시스템은 주문 데이터를 5분마다 ERP에 전송함. 전송에 실패하면 3회까지 재시도하며, 3회 모두 실패한 건은 별도 큐에 적재하고 운영자가 수동으로 재처리함. 재처리 결과는 일 1회 정산 리포트에 반영됨.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps \"5분마다\", \"3회까지 재시도\", \"별도 큐에 적재\", \"운영자가 수동으로 재처리\", and \"재처리 결과는 일 1회 정산 리포트에 반영됨\", and it never says how often the report itself is generated."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K7-slide-symbols",
+      "repeat": 1,
+      "output": "- 도입 효과: 상담 응답 시간 단축, 상담원 업무 부담 완화, 야간 문의 대응\n- 적용 범위: 회원·비회원 문의 전체\n- 기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\n- 1차 적용 대상: 배송 문의\n\n검토 메모: \"40% 감소\"가 2주 시범 운영에서 실제로 측정한 결과인지, 그 결과를 바탕으로 한 예상치인지 확인해 주세요. 측정 결과라면 \"기대 수치\" 대신 \"시범 운영 결과\"로 쓰는 편이 정확합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited line \"기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\" keeps the 40% figure, the 2-week pilot condition and the expected status, and every bullet still ends in a noun. The note only asks whether to change it to \"시범 운영 결과\" and does not change the status itself."
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K7-slide-symbols",
+      "repeat": 2,
+      "output": "- 도입 효과: 상담 응답 시간 단축, 상담원 업무 부담 완화, 야간 문의 대응\n- 적용 범위: 회원·비회원 문의 전체\n- 기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\n- 1차 적용 대상: 배송 문의\n\n검토 메모: '40% 감소'가 시범 운영 2주 동안 실제로 측정한 결과인지, 그 결과를 바탕으로 추정한 기대치인지 확인해 주세요. 측정값이라면 '기대 수치'를 '시범 운영 결과'로 바꾸는 편이 정확합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited line \"기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\" keeps 40%, the 2-week condition, and the expected status with noun-ending text throughout; the note only conditionally suggests \"시범 운영 결과\" without changing the line."
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K7-slide-symbols",
+      "repeat": 3,
+      "output": "- 도입 효과: 상담 응답 시간 단축, 상담원 업무 부담 완화, 야간 문의 대응\n- 적용 범위: 회원·비회원 문의 전체\n- 기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\n- 1차 적용 대상: 배송 문의\n\n검토 메모: 40%가 2주 시범 운영에서 실제로 측정한 값이라면 '시범 운영 결과'로, 시범 운영을 근거로 추정한 값이라면 지금처럼 '기대 수치'로 표기해야 하니 둘 중 어느 쪽인지 확인해 주세요.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edit keeps \"기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\", so the figure, the condition, and the expected (not achieved) status are all intact, and every line still ends in a noun phrase such as \"야간 문의 대응\" and \"배송 문의\"; the note only asks the user to confirm the status and does not change it."
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K8-retro-keep",
+      "repeat": 1,
+      "output": "많은 일이 있었던 분기였습니다. 7월 결제 장애는 영향도 '매우 높음'으로 분류했고, 복구까지 2시간이 걸렸습니다. 원인은 운영 DB에 바로 실행한 마이그레이션이었습니다.\n\n이번 장애로 마이그레이션은 스테이징에서 먼저 실행해야 한다는 것을 배웠습니다. 앞으로 매주 금요일에 마이그레이션 계획을 팀 채널에 공유하겠습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K8-retro-keep",
+      "repeat": 2,
+      "output": "많은 일이 있었던 분기였습니다. 7월 결제 장애는 영향도 '매우 높음'으로 분류했고, 복구까지 2시간이 걸렸습니다. 원인은 운영 DB에 바로 실행한 마이그레이션이었습니다.\n\n이번 장애로 마이그레이션은 스테이징에서 먼저 실행해야 한다는 것을 깨달았습니다. 앞으로 매주 금요일에 마이그레이션 계획을 팀 채널에 공유하겠습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K8-retro-keep",
+      "repeat": 3,
+      "output": "많은 일이 있었던 분기였습니다. 7월 결제 장애는 영향도 '매우 높음'으로 분류했고, 복구까지 2시간이 걸렸습니다. 원인은 운영 DB에 바로 실행한 마이그레이션이었습니다.\n\n이번 장애로 마이그레이션은 스테이징에서 먼저 실행해야 한다는 것을 깨달았습니다. 앞으로 매주 금요일에 마이그레이션 계획을 팀 채널에 공유하겠습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K9-punct-keep",
+      "repeat": 1,
+      "output": "- 대상 데이터: 수집·정제 단계 산출물\n- 화면 기준 해상도: 1920×1080\n- 장애 감지 후 1시간 만에 복구 완료\n- 처리 방식(일괄 또는 실시간)은 운영팀이 선택함",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K9-punct-keep",
+      "repeat": 2,
+      "output": "- 대상 데이터: 수집·정제 단계 산출물\n- 화면 기준 해상도: 1920×1080\n- 장애 감지 후 1시간 만에 복구 완료\n- 처리 방식은 운영팀이 일괄과 실시간 중에서 선택함",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "K9-punct-keep",
+      "repeat": 3,
+      "output": "- 대상 데이터: 수집·정제 단계 산출물\n- 화면 기준 해상도: 1920×1080\n- 장애 감지 후 1시간 만에 복구 완료\n- 처리 방식: 일괄, 실시간 중 운영팀이 선택함",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "KP02-regression",
+      "repeat": 1,
+      "output": "이번 분기 목표는 문의 분류 기준을 통일하고 담당자를 지정해 평균 응답 시간을 2일에서 1일로 줄이는 것입니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response describes the goal with \"줄이는 것입니다\", keeps the time as \"2일에서 1일로\", and doesn't turn the goal into something already achieved."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception only covers a report title like \"평균 응답 시간 단축\". Neither the source nor the response has a title; both are one sentence (\"…1일로 줄이는 것입니다.\"), so the condition does not arise."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "KP02-regression",
+      "repeat": 2,
+      "output": "이번 분기 목표는 문의 분류 기준을 통일하고 담당자를 지정해 평균 응답 시간을 2일에서 1일로 줄이는 것입니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response turns the sentence into a goal statement ending in \"줄이는 것입니다\", which doesn't claim the goal was achieved, and it keeps \"2일에서 1일로\"."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception covers a report title like `평균 응답 시간 단축`, but the source text and the response are a single body sentence (\"…1일로 줄이는 것입니다\") with no title, so the criterion doesn't apply."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "KP02-regression",
+      "repeat": 3,
+      "output": "이번 분기 목표는 문의 분류 기준을 통일하고 담당자를 지정해 평균 응답 시간을 2일에서 1일로 줄이는 것입니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response ends with \"평균 응답 시간을 2일에서 1일로 줄이는 것입니다\", so it states the goal with the \"줄이는 것입니다\" form, keeps 2일→1일, and doesn't present the goal as something already achieved."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "The exception covers only the report title `평균 응답 시간 단축`, but the source text has no title; the response just edits one body sentence (\"...1일로 줄이는 것입니다\"), so the exception doesn't apply."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "KP03-regression",
+      "repeat": 1,
+      "output": "집중 호우 시 지하 창고로 물이 들어올 수 있고, 그 물로 전원 장치가 손상되면 운영이 중단될 우려가 있음. 아직 발생한 사고는 없음.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The edit spells out the causal chain, \"집중 호우 시 지하 창고로 물이 들어올 수 있고, 그 물로 전원 장치가 손상되면 운영이 중단될 우려가 있음\", and keeps everything hypothetical with \"아직 발생한 사고는 없음\", so the risk is never presented as an actual incident."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception only applies when the source is a table already split into `조건 / 위험 / 영향` columns, but the original \"집중 호우 지하 창고 침수 전원 장치 손상 운영 중단 우려.\" is a single line with no table, so the condition is false."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "KP03-regression",
+      "repeat": 2,
+      "output": "집중 호우 시 지하 창고로 물이 들어올 수 있고, 그 물로 전원 장치가 손상되면 운영이 중단될 우려가 있음.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The edit keeps the chain readable as rain → flooding → power damage → shutdown (\"집중 호우 시 지하 창고로 물이 들어올 수 있고, 그 물로 전원 장치가 손상되면 운영이 중단될 우려가 있음\"), and the hedged wording \"수 있고\" (\"could\"), \"-면\" (\"if\") and \"우려\" (\"concern\") never presents it as an accident that already happened."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception applies only to a table already split into `조건 / 위험 / 영향` columns, and the source is a single sentence (\"집중 호우 지하 창고 침수 전원 장치 손상 운영 중단 우려.\"), not a table."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "KP03-regression",
+      "repeat": 3,
+      "output": "집중 호우 시 지하 창고로 물이 들어올 수 있고, 이 물로 전원 장치가 손상되면 운영이 중단될 우려가 있음.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response lays out the chain \"집중 호우 시 지하 창고로 물이 들어올 수 있고, 이 물로 전원 장치가 손상되면 운영이 중단될 우려가 있음\". It uses the possibility and concern forms \"수 있고\" and \"우려가 있음\", so nothing is upgraded to a confirmed incident."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception only applies when a table already has `조건 / 위험 / 영향` columns, and neither the source sentence (\"집중 호우 지하 창고 침수...\") nor the response is in such a table, so the condition is not met."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "KP08-regression",
+      "repeat": 1,
+      "output": "분기 정산에 필요한 증빙은 9월 20일 18시까지 반드시 제출해 주시기 바랍니다. 빠진 증빙이 없도록 꼼꼼히 확인해 주시기 바랍니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response stays polite and keeps both the obligation and the deadline (\"9월 20일 18시까지 반드시 제출해 주시기 바랍니다\"). It doesn't soften this with phrases like \"가능하시면\" or \"편하실 때\", and it adds no penalty or legal liability."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The exception allows \"해야 합니다\" for mandatory duties but does not require it, and the response keeps the duty clear with \"반드시 제출해 주시기 바랍니다\", so the obligation is not weakened and nothing is misapplied."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "KP08-regression",
+      "repeat": 2,
+      "output": "증빙은 9월 20일 18시까지 반드시 제출해야 합니다. 빠진 증빙이 없는지 확인해 주시기 바랍니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response is polite (\"제출해야 합니다\", \"확인해 주시기 바랍니다\"), keeps both the requirement and the deadline (\"9월 20일 18시까지 반드시\"), doesn't soften them with phrases like \"가능하시면\" or \"편하실 때\", and doesn't add any penalty or legal liability that wasn't provided."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The response states the required submission clearly as \"반드시 제출해야 합니다\", which is the `해야 합니다` form the exception allows for a firm obligation, and it keeps the obligation's strength without inventing sanctions."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "KP08-regression",
+      "repeat": 3,
+      "output": "증빙은 9월 20일 18시까지 누락 없이 반드시 제출해 주시기 바랍니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response \"9월 20일 18시까지 누락 없이 반드시 제출해 주시기 바랍니다\" is polite, keeps the obligation (\"반드시\") and the deadline, does not soften it with \"가능하시면\"/\"편하실 때\", and adds no penalty or legal liability."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "The edited sentence, \"누락 없이 반드시 제출해 주시기 바랍니다,\" is a polite request about submitting settlement evidence; it isn't an internal checklist item, and it doesn't use the \"해야 합니다\" form for a safety or compliance duty, so the exception never comes into play."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N1-internal-notice-command",
+      "repeat": 1,
+      "output": "증빙은 9월 20일 18시까지 반드시 제출해 주시기 바랍니다. 빠진 서류가 없도록 확인해 주시기 바랍니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response turns both commands into polite requests (\"반드시 제출해 주시기 바랍니다\" and \"빠진 서류가 없도록 확인해 주시기 바랍니다\"). It keeps \"9월 20일 18시\" and \"반드시\". It adds no 가능하시면/편하실 때 softener and no penalty."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The response is only the single edited notice, \"증빙은 9월 20일 18시까지 반드시 제출해 주시기 바랍니다. 빠진 서류가 없도록 확인해 주시기 바랍니다.\", and nothing follows it, so no alternative version (formal or for external recipients) is offered."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N1-internal-notice-command",
+      "repeat": 2,
+      "output": "증빙은 9월 20일 18시까지 반드시 제출해 주시기 바랍니다. 빠진 증빙이 없는지 꼼꼼히 확인해 주시기 바랍니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "Both commands are rewritten politely as \"반드시 제출해 주시기 바랍니다\" and \"꼼꼼히 확인해 주시기 바랍니다\", so neither \"제출할 것\" nor \"철저를 기할 것\" remains. The rewrite keeps \"9월 20일 18시\" and \"반드시\", and it adds no softening phrase like 가능하시면 or 편하실 때 and no penalty."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The response is only the single edited notice (\"증빙은 9월 20일 18시까지 반드시 제출해 주시기 바랍니다. 빠진 증빙이 없는지 꼼꼼히 확인해 주시기 바랍니다.\"), and no alternative version follows it."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N1-internal-notice-command",
+      "repeat": 3,
+      "output": "증빙은 9월 20일 18시까지 반드시 제출해 주시기 바랍니다. 빠진 항목이 없는지 꼼꼼히 확인해 주시기 바랍니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response turns both commands into polite requests (\"반드시 제출해 주시기 바랍니다\" and \"꼼꼼히 확인해 주시기 바랍니다\") and drops \"제출할 것\" and \"철저를 기할 것\". It keeps \"9월 20일 18시\" and \"반드시\", and it adds no 가능하시면/편하실 때 softener and no penalty."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The response is only the single edited notice ending with \"꼼꼼히 확인해 주시기 바랍니다.\" and does not offer a more formal or external-recipient version after it."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N10-added-claims",
+      "repeat": 1,
+      "output": "저희 팀은 지난달부터 배포하기 전에 DB를 먼저 백업합니다. 그 뒤로 복구 시간이 30분에서 10분으로 줄었습니다. 이 백업 절차 덕분이라고 생각합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The cause is still stated as the author's opinion in \"이 백업 절차 덕분이라고 생각합니다\", and the edit adds no new hedge, verification statement, date, actor or tool: \"지난달부터\" is kept as it was, and the only changes are wording (\"배포하기 전에\", \"그 뒤로\", \"이\")."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N10-added-claims",
+      "repeat": 2,
+      "output": "저희 팀은 지난달부터 배포 전에 DB 백업을 먼저 하고 있습니다. 그 뒤로 복구 시간이 30분에서 10분으로 줄었습니다. 백업 절차 덕분이라고 생각합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The cause is still framed as opinion (\"백업 절차 덕분이라고 생각합니다\"), and the edits only change tense and connectors (\"하고 있습니다\", \"그 뒤로\"), with no new hedge, verification statement, date, actor, or tool added."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N10-added-claims",
+      "repeat": 3,
+      "output": "저희 팀은 지난달부터 배포 전에 DB 백업을 먼저 합니다. 이 절차를 시작한 뒤로 복구 시간이 30분에서 10분으로 줄었습니다. 백업 절차 덕분이라고 생각합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The cause is still framed as the author's opinion (\"백업 절차 덕분이라고 생각합니다\"). The only change, \"이 절차를 시작한 뒤로\", just restates the original \"그 뒤\" and adds no new hedge, verification statement, date, actor or tool."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N2-checklist-keep",
+      "repeat": 1,
+      "output": "- [ ] 증빙 제출 완료\n- [ ] 영수증 원본 보관 확인\n- [ ] 담당자 승인 받음\n\n검토 메모: 세 항목 모두 점검표에 맞는 짧은 개조식 표현이고 AI 티가 나는 부분이 없어 원문을 그대로 두었습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N2-checklist-keep",
+      "repeat": 2,
+      "output": "- [ ] 증빙 제출 완료\n- [ ] 영수증 원본 보관 확인\n- [ ] 담당자 승인 받음\n\n검토 메모: AI 티가 나는 표현이 없고 점검표 항목으로 자연스러워서 바꾸지 않았습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N2-checklist-keep",
+      "repeat": 3,
+      "output": "- [ ] 증빙 제출 완료\n- [ ] 영수증 원본 보관 확인\n- [ ] 담당자 승인 받음\n\n검토 메모: AI 문체로 보이는 표현이 없어 원문을 그대로 두었습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N3-email-register",
+      "repeat": 1,
+      "output": "첨부 자료를 보내 드리니 검토하신 뒤 회신해 주시기 바랍니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N3-email-register",
+      "repeat": 2,
+      "output": "첨부 자료를 검토하신 뒤 회신해 주시기 바랍니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N3-email-register",
+      "repeat": 3,
+      "output": "첨부 자료를 보내 드리니 검토하신 뒤 회신해 주시기 바랍니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N4-modifier-scope",
+      "repeat": 1,
+      "output": "장애 처리 결과는 월 1회 경영 보고서에 반영됨. 미처리 건은 다음 달로 이월됨.\n\n검토 메모: 이미 간결하고 명확해서 고칠 부분이 없습니다. 원문 그대로 두었습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response leaves the source sentence unchanged, so \"월 1회\" stays where it was in \"월 1회 경영 보고서에 반영됨\", and the response never adds wording such as \"월간 경영 보고서\" or \"매월 발행되는\" that would say how often the report is produced."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N4-modifier-scope",
+      "repeat": 2,
+      "output": "장애 처리 결과는 월 1회 경영 보고서에 반영됨. 미처리 건은 다음 달로 이월됨.\n\n검토 메모: 이미 간결하고 보고서 문체(개조식)에도 맞아 고칠 부분이 없습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps \"월 1회 경영 보고서에 반영됨\" in its original position and does not add wording such as \"월간 경영 보고서\" or \"매월 발행되는\", so it never says how often the report is produced."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N4-modifier-scope",
+      "repeat": 3,
+      "output": "장애 처리 결과는 월 1회 경영 보고서에 반영됨. 미처리 건은 다음 달로 이월됨.\n\n검토 메모: 원문이 이미 간결하고 개조식 어미도 보고서에 맞아 그대로 두었습니다. 다만 '월 1회'가 반영 주기를 뜻하는지 월간 경영 보고서를 뜻하는지 확인이 필요하면 알려 주세요.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited text keeps \"월 1회 경영 보고서에 반영됨\" in its source position, and the note's mention of \"월간 경영 보고서\" is only a question about which meaning was intended (\"확인이 필요하면 알려 주세요\"), so the response never states how often the report is produced."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N5-gaejosik-to-prose",
+      "repeat": 1,
+      "output": "5월 3일에 배포를 마쳤습니다. 오류율은 0.2%를 유지했고, 롤백은 하지 않았습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps all three facts: \"5월 3일에 배포를 마쳤습니다\" (5/3), \"오류율은 0.2%를 유지했고\" (0.2%), and \"롤백은 하지 않았습니다\" (no rollback). It adds no evaluation or cause wording such as 안정적으로, 성공적으로, or 덕분에."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N5-gaejosik-to-prose",
+      "repeat": 2,
+      "output": "5/3에 배포를 마쳤습니다. 오류율은 0.2%를 유지했고, 롤백은 없었습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps \"5/3에 배포를 마쳤습니다\", \"오류율은 0.2%를 유지했고\", and \"롤백은 없었습니다\" with no added evaluation or cause such as 안정적으로, 성공적으로, or 덕분에."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N5-gaejosik-to-prose",
+      "repeat": 3,
+      "output": "5/3에 배포를 완료했습니다. 오류율은 0.2%를 유지했고, 롤백은 없었습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps \"5/3\", \"0.2%\", and \"롤백은 없었습니다\" from the memo, and it adds no evaluation or cause such as 안정적으로, 성공적으로, or 덕분에."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N6-review-only",
+      "repeat": 1,
+      "output": "**검토 결과**\n\n1. **「따라서 고객 만족도 향상이 입증됐다」: 근거보다 강한 주장**\n   제공된 근거는 사내 시험의 결재 처리 시간뿐입니다. 고객 만족도를 측정한 자료가 없으므로 \"입증됐다\"는 성립하지 않습니다. 처리 시간이 줄어도 고객이 그 변화를 체감하는지, 만족도가 실제로 오르는지는 별도 측정이 필요합니다. 주장을 좁히면 \"고객 만족도에 주는 영향은 아직 측정하지 않았다\" 정도가 근거 범위 안입니다.\n\n2. **「따라서」: 근거 없는 인과 연결**\n   처리 시간 단축에서 만족도 향상으로 이어지는 인과는 가설입니다. 확인된 사실(시간 단축)과 가설(만족도 영향)을 같은 문장 흐름에서 결론처럼 잇고 있습니다.\n\n3. **「결재 처리 시간이 평균 3일에서 1일로 줄었다」: 근거와 일치하나 범위 확인 필요**\n   사내 시험 결과이므로 \"사내 시험에서\"라는 범위 한정은 유지해야 합니다. 실제 운영 환경의 결과처럼 읽히면 안 됩니다. 이 수치를 판단 근거로 쓰려면 시험 대상 건수, 기간, 비교 조건(전후 동일 조건인지)을 확인해야 합니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response explicitly states \"고객 만족도를 측정한 자료가 없으므로 '입증됐다'는 성립하지 않습니다,\" which means the internal processing-time test does not support the customer-satisfaction claim."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response gives only review findings and does not deliver a rewritten passage; the single narrowing example, \"고객 만족도에 주는 영향은 아직 측정하지 않았다\" 정도가 근거 범위 안입니다, is a short illustrative phrase, which the criterion allows."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N6-review-only",
+      "repeat": 2,
+      "output": "## 검토 결과\n\n**1. \"따라서 고객 만족도 향상이 입증됐다\": 근거가 주장을 뒷받침하지 못함**\n\n- **측정 대상이 다릅니다.** 사내 시험은 결재 처리 시간을 측정했습니다. 고객 만족도는 측정하지 않았습니다. 처리 시간 단축은 측정 결과이고, 고객 만족도 향상은 아직 가설입니다.\n- **인과 연결에 근거가 없습니다.** \"따라서\"는 처리 시간이 줄면 고객 만족도가 오른다는 전제를 깔고 있습니다. 제공 자료에는 이 전제를 확인한 내용이 없습니다. 결재 처리가 고객이 체감하는 과정인지도 자료에서 알 수 없습니다.\n- **\"입증\"은 과도한 표현입니다.** 사내 시험은 고객 반응을 보여 주는 근거가 될 수 없습니다. 주장을 좁힌다면 \"고객 만족도에 미치는 영향은 확인이 필요하다\" 정도가 근거와 맞습니다.\n\n**2. \"사내 시험에서 결재 처리 시간이 평균 3일에서 1일로 줄었다\": 측정 결과로 유지 가능, 조건 확인 필요**\n\n- 이 수치는 사내 시험 결과로만 표현해야 합니다. 실제 운영 환경에서도 같은 결과가 나온다는 근거는 아닙니다. 현재 문장은 \"사내 시험에서\"라는 범위를 밝히고 있어 이 점은 적절합니다.\n- 비교 기준이 문장만으로는 불분명합니다. \"3일\"이 같은 시험에서 측정한 기존 절차의 값인지, 이전 운영 기록인지 확인이 필요합니다.\n- 시험 기간, 처리 건수 같은 측정 조건은 자료에 없습니다. 이 수치를 의사결정에 쓰려면 함께 밝혀야 합니다.\n\n검토 메모: 고객 만족도 주장을 유지하려면 고객 대상 측정 자료가 필요합니다. 그런 자료가 없다면 이 주장을 검증 과제로 바꿀지 삭제할지 정해야 합니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response says the internal test does not support the satisfaction claim, stating \"근거가 주장을 뒷받침하지 못함\" and \"사내 시험은 결재 처리 시간을 측정했습니다. 고객 만족도는 측정하지 않았습니다.\""
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response has no rewritten passage, only review points; its one suggestion, \"고객 만족도에 미치는 영향은 확인이 필요하다,\" is a short phrase showing how to narrow the claim, which the criterion allows."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N6-review-only",
+      "repeat": 3,
+      "output": "**검토 결과**\n\n1. **「따라서 고객 만족도 향상이 입증됐다」: 근거가 없는 결론**\n   제공 자료는 사내 시험의 결재 처리 시간뿐이고, 고객 만족도를 측정한 결과는 없습니다. 내부 시험 결과를 고객 반응의 증거로 쓰고 있습니다. 근거에 맞추려면 결론을 처리 시간 단축까지로 좁히거나, 고객 만족도는 별도로 측정해야 할 가설로 표시해야 합니다.\n\n2. **「따라서」: 인과 연결의 비약**\n   처리 시간이 줄면 고객 만족도가 오른다는 연결을 뒷받침하는 자료가 없습니다. 고객이 결재 처리 시간을 체감하는지도 자료에서 확인되지 않습니다.\n\n3. **「입증됐다」: 확실성 과장**\n   측정하지 않은 결과에 \"입증\"을 썼습니다. 근거가 생기더라도 측정 방법과 결과를 함께 제시해야 이 표현을 쓸 수 있습니다.\n\n4. **「사내 시험에서 … 평균 3일에서 1일로 줄었다」: 적용 범위 확인 필요**\n   이 문장 자체는 제공 자료와 맞습니다. 다만 시험 기간, 건수, 조건이 실제 운영 환경과 같은지는 자료에 없습니다. 이 수치를 운영 성과로 확대해 인용하지 않도록 \"사내 시험\" 범위를 유지해야 합니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response states plainly that the conclusion lacks evidence: \"제공 자료는 사내 시험의 결재 처리 시간뿐이고, 고객 만족도를 측정한 결과는 없습니다\" (the provided material covers only approval processing time from the internal test, with no measured customer-satisfaction result). It adds that \"내부 시험 결과를 고객 반응의 증거로 쓰고 있습니다\" (the internal test result is being used as evidence of customer response)."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response gives only numbered review findings and no rewritten passage; its closest wording is the short guidance \"결론을 처리 시간 단축까지로 좁히거나\", which shows how to narrow the claim without supplying a revised version."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N7-rewrite-keep-structure",
+      "repeat": 1,
+      "output": "## 2. 현황\n신규 결제 모듈의 사내 시험을 마쳤고, 처리 성공률이 높아졌다.\n\n| 항목 | 값 |\n|---|---|\n| 시험 기간 | 2주 |\n| 처리 성공률 | 97.8% |\n\n운영 비용은 월 1,200만 원으로 잠정 추정된다.\n\n검토 메모: \"처리 성공률이 높아졌다\"의 비교 기준(기존 모듈 성공률 등)이 본문과 표에 없습니다. 기준 수치를 추가하거나, 근거가 없다면 \"처리 성공률은 97.8%였다\"로 좁혀야 합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edit keeps the \"## 2. 현황\" heading, the paragraph-table-paragraph order, and the \"시험 기간 | 2주\" and \"처리 성공률 | 97.8%\" rows unchanged, and it adds no new section, decision request, success criteria, next steps, or test plan; the \"검토 메모\" after the edited text is an editor's note about missing baselines, not new content in the report."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps the cost as an estimate (\"월 1,200만 원으로 잠정 추정된다\") and leaves 97.8% in the unchanged table under the \"사내 시험\" context. It invents no baseline; instead, its note says the comparison basis \"본문과 표에 없습니다\" and suggests narrowing the claim to \"처리 성공률은 97.8%였다\"."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N7-rewrite-keep-structure",
+      "repeat": 2,
+      "output": "## 2. 현황\n신규 결제 모듈의 사내 시험을 마쳤고, 처리 성공률이 높아졌다.\n\n| 항목 | 값 |\n|---|---|\n| 시험 기간 | 2주 |\n| 처리 성공률 | 97.8% |\n\n운영 비용은 월 1,200만 원으로 추정된다.\n\n검토 메모: 처리 성공률이 \"높아졌다\"고 하려면 비교 기준(기존 모듈 성공률 등)이 필요하지만 본문과 표에 없습니다. 기준값을 추가하거나, 기준이 없다면 \"처리 성공률은 97.8%였다\"로 표현을 좁힐지 결정해야 합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited text keeps the \"## 2. 현황\" heading, the paragraph-table-paragraph order, and the rows \"시험 기간 | 2주\" and \"처리 성공률 | 97.8%\". The artifact gains no new section, decision request, success criteria, next steps or test plan. The \"검토 메모\" that follows is a separate note to the user flagging a missing comparison baseline, not content added to the report."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The cost stays an estimate (\"월 1,200만 원으로 추정된다\"), and 97.8% stays in the table under the \"사내 시험\" context. No baseline is invented: the memo says the comparison standard is \"본문과 표에 없습니다\" (not in the text or table) and asks the user to add one or narrow the claim."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N7-rewrite-keep-structure",
+      "repeat": 3,
+      "output": "## 2. 현황\n신규 결제 모듈의 사내 시험을 마쳤다. 처리 성공률은 97.8%였다.\n\n| 항목 | 값 |\n|---|---|\n| 시험 기간 | 2주 |\n| 처리 성공률 | 97.8% |\n\n운영 비용은 월 1,200만 원으로 잠정 추정된다.\n\n검토 메모: 원문의 \"처리 성공률이 제고되었다\"는 비교 기준이 없어 측정값 97.8%로 바꿨습니다. 성공률이 높아졌다고 쓰려면 기존 모듈의 성공률과 측정 기간을 함께 적어야 합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited text keeps \"## 2. 현황\", the paragraph-table-paragraph order, and the unchanged rows \"시험 기간 | 2주\" and \"처리 성공률 | 97.8%\". The only addition is a \"검토 메모\" placed outside the artifact that explains the edit, so no new section, decision request, success criteria, next steps, or test plan was added to the report."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps the cost as an estimate (\"월 1,200만 원으로 잠정 추정된다\") and ties 97.8% to the internal test (\"사내 시험을 마쳤다. 처리 성공률은 97.8%였다\"); rather than inventing a baseline, the note says one is needed (\"기존 모듈의 성공률과 측정 기간을 함께 적어야 합니다\")."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N8-note-not-asterisk",
+      "repeat": 1,
+      "output": "환불은 결제일로부터 7일 이내에 신청할 수 있음.\n※ 부분 환불은 담당 부서의 승인이 필요함(승인 부서는 추후 확정).\n\n검토 메모: 승인 부서가 정해지지 않았습니다. 고객에게 안내하기 전에 부서를 확정해 괄호 안 문구를 바꿔 주세요.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited text still has its own ※ line, \"※ 부분 환불은 담당 부서의 승인이 필요함(승인 부서는 추후 확정)\", which keeps the approval requirement and the undecided department in the text; the labeled review note says \"승인 부서가 정해지지 않았습니다\" and names no department."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The note after the artifact begins \"검토 메모:\", not ※, and the only line in the whole response that starts with ※ is the artifact's own \"※ 부분 환불은 담당 부서의 승인이 필요함\", so there is exactly one."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N8-note-not-asterisk",
+      "repeat": 2,
+      "output": "환불은 결제일로부터 7일 이내에 신청할 수 있음.\n※ 부분 환불은 담당 부서의 승인이 필요함(담당 부서는 추후 확정).\n\n검토 메모: 승인을 맡을 담당 부서가 아직 정해지지 않았습니다. 안내를 게시하기 전에 부서명을 확정해 넣을지, 이 괄호 문구를 고객에게 그대로 보여 줄지 정해야 합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited text keeps its own ※ line, \"※ 부분 환불은 담당 부서의 승인이 필요함(담당 부서는 추후 확정)\", so the approval requirement and the still-undecided department both stay in the artifact, and no specific department is named anywhere, including the review note."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The note to the requester begins with \"검토 메모:\" instead of ※, and the only line in the whole response that starts with ※ is the artifact's own \"※ 부분 환불은 담당 부서의 승인이 필요함\", so there is just one."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N8-note-not-asterisk",
+      "repeat": 3,
+      "output": "환불은 결제일로부터 7일 이내 신청 가능함.\n※ 부분 환불 시 담당 부서 승인 필요 (승인 부서는 추후 확정)\n\n검토 메모: 원문이 이미 명확해 그대로 두었습니다. 승인 부서가 아직 정해지지 않았으므로, 안내를 게시하기 전에 부서명을 확정해 괄호 부분을 바꿔야 합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited text keeps the ※ line \"※ 부분 환불 시 담당 부서 승인 필요 (승인 부서는 추후 확정)\" with the still-undecided approver left in the text, and neither the text nor the review note names a department."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The note to the requester opens with \"검토 메모:\" instead of ※, and the only line in the whole response that starts with ※ is the one carried over from the original text (\"※ 부분 환불 시 담당 부서 승인 필요\"), so the count stays at one."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N9-slot-input",
+      "repeat": 1,
+      "output": "투자 심사표의 수치 항목에 추정치를 적는다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited text \"수치 항목에 추정치를 적는다\" turns 기입한다 into 적는다, so the action is still just entering values and never becomes 확정, 승인, or 결정."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N9-slot-input",
+      "repeat": 2,
+      "output": "투자 심사표의 수치 입력란에 아직 승인받지 않은 추정치를 적는다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps the action as entering values (\"추정치를 적는다\") and even notes \"아직 승인받지 않은,\" so it never turns into 확정, 승인, or 결정."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "new",
+      "case": "N9-slot-input",
+      "repeat": 3,
+      "output": "투자 심사표의 수치 입력란에 추정치를 적는다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response says \"추정치를 적는다,\" so the action is still entering values, and it never says 확정, 승인, or 결정."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K1-gaejosik-deslop",
+      "repeat": 1,
+      "output": "## 3. 검색 개선 현황\n- 신규 검색 엔진으로 PostgreSQL에서 12,000건 목록 조회 시간을 2.4초에서 0.6초로 단축함(사내 시험 환경 기준)\n- 주요 변경: 색인 재구성, 자동완성 추가, 오타 보정 적용\n- 필터 구성이 기존 화면과 달라 사용자 안내가 필요함\n- 성능·품질 지표는 다음 주 운영 환경에서 재측정 예정임\n- 담당 조직 간 일정 조율 시 확인 절차가 추가됨\n\n| 항목 | 운영 반영 |\n|---|---|\n| 색인 재구성 | 완료 |\n| 오타 보정 | — |\n\n---\n\n※ 표의 오타 보정 행 `—`는 '미반영', '해당 없음', '진행 중' 중 무엇인지 알 수 없어 그대로 두었습니다. 의미를 정해 적어 두는 편이 좋습니다. 자동완성 추가는 본문의 주요 변경에는 있지만 표에는 없습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K1-gaejosik-deslop",
+      "repeat": 2,
+      "output": "## 3. 검색 개선 현황\n- 신규 검색 엔진으로 PostgreSQL에서 12,000건 목록 조회 시간을 2.4초에서 0.6초로 단축함(사내 시험 환경 기준)\n- 주요 변경: 색인 재구성, 자동완성 추가, 오타 보정 적용\n- 필터 구성이 기존 화면과 달라 사용자 안내가 필요함\n- 성능·품질 지표는 다음 주 운영 환경에서 재측정 예정임\n- 담당 조직 간 일정 조율에 확인 절차가 추가됨\n\n| 항목 | 운영 반영 |\n|---|---|\n| 색인 재구성 | 완료 |\n| 오타 보정 | — |\n\n---\n\n※ 표의 오타 보정 행 `—`는 \"미반영\", \"해당 없음\", \"일정 미정\" 중 무엇인지 표에서 알 수 없습니다. 보고 대상이 운영 반영 여부를 판단해야 한다면 실제 상태를 적어 주세요. 자동완성 추가는 표에 없습니다. 누락이라면 행을 추가해야 합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K1-gaejosik-deslop",
+      "repeat": 3,
+      "output": "## 3. 검색 개선 현황\n- 신규 검색 엔진으로 PostgreSQL에서 12,000건 목록 조회 시간을 2.4초에서 0.6초로 단축함(사내 시험 환경 기준)\n- 주요 변경: 색인 재구성, 자동완성 추가, 오타 보정 적용\n- 필터 구성이 기존 화면과 달라 사용자 안내가 필요함\n- 성능·품질 지표는 다음 주 운영 환경에서 재측정 예정임\n- 담당 조직 간 일정 조율에 확인 절차가 추가됨\n\n| 항목 | 운영 반영 |\n|---|---|\n| 색인 재구성 | 완료 |\n| 오타 보정 | — |\n\n---\n\n※ 표의 `—`가 \"미반영\", \"진행 중\", \"해당 없음\" 중 무엇인지 표에 나와 있지 않습니다. 상태가 정해져 있다면 그 값으로 바꾸는 편이 읽는 사람에게 더 정확합니다. 자동완성은 주요 변경에는 있지만 표에는 없습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K2-blog-prose",
+      "repeat": 1,
+      "output": "저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다. 이 절차가 생긴 뒤 롤백은 분기당 4회에서 1회로 줄었습니다. 저는 이 변화가 체크리스트 덕분이라고 생각합니다.\n\n머지하려면 리뷰어 두 명의 승인도 받아야 합니다. 번거롭게 느껴질 수 있지만, 저는 이 규칙이 필요하다고 생각합니다.\n\n---\n\n※ 검토 메모\n\n- **\"정말 많은 분들이 헷갈려 하시는 부분\"은 뺐습니다.** 근거가 없는 주장입니다. 실제 사례나 문의가 있었다면 그 내용을 넣는 편이 낫습니다.\n- **\"협업의 중요성을 깨달았습니다\"는 뺐습니다.** 본문에 협업에서 무엇이 바뀌었는지가 없어 결론이 내용과 이어지지 않습니다. 구체적으로 배운 점이 있다면 알려 주세요. 예를 들어 리뷰에서 어떤 문제를 잡았는지 같은 내용입니다. 그러면 그 내용으로 마무리 문단을 쓰겠습니다.\n- **두 명 승인 규칙이 왜 필요한지가 빠져 있습니다.** 이 규칙으로 실제로 막은 문제가 있다면 한 문장만 더해도 설득력이 크게 올라갑니다.\n- **롤백 감소의 원인은 단정하지 않고 \"생각합니다\"로 남겼습니다.** 같은 기간에 다른 변화가 있었을 수 있기 때문입니다. 또 본문에는 스테이징 선실행 절차만 나오는데 원인은 \"체크리스트\"로 적혀 있습니다. 체크리스트에 다른 항목도 있다면 함께 소개하는 것이 좋습니다.",
+      "string_checks": {
+        "0": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The edited post starts straight with content (\"저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다\"), with the original announcement \"오늘은 배포 전 체크리스트에 대해 알아보겠습니다\" removed and not replaced by another one."
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edit keeps the link framed as the author's belief, \"저는 이 변화가 체크리스트 덕분이라고 생각합니다.\" The note also says the cause is \"단정하지 않고 '생각합니다'로 남겼습니다,\" so the response never presents it as a confirmed cause."
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K2-blog-prose",
+      "repeat": 2,
+      "output": "저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다. 이 절차가 생긴 뒤 롤백은 분기당 4회에서 1회로 줄었습니다. 저는 이 변화가 체크리스트 덕분이라고 생각합니다.\n\n머지하려면 리뷰어 두 명의 승인도 받아야 합니다. 번거롭게 느끼실 수도 있지만, 저는 이 규칙이 필요하다고 생각합니다.\n\n---\n\n**확인이 필요한 부분**\n\n- **도입부:** \"많은 분들이 헷갈려 하시는 부분\"을 뺐습니다. 실제로 사내 문의가 많았다면 그 사례를 첫 문장에 넣으면 좋습니다.\n- **롤백 감소 원인:** \"체크리스트 덕분\"은 추정이라서 \"생각합니다\"를 남겼습니다. 같은 기간에 롤백에 영향을 준 다른 변화가 없었는지 확인할 수 있다면 근거로 덧붙여 주세요.\n- **리뷰어 승인 규칙:** 왜 필요한지 이유가 원문에 없습니다. 이 규칙으로 막은 문제가 있었다면 한 문장 추가하면 설득력이 커집니다.\n- **마지막 문단:** \"협업의 중요성을 깨달았습니다\"는 본문에서 뒷받침하는 내용이 없어 삭제했습니다. 이 경험으로 팀이 실제로 바꾼 점이 있다면 그것으로 글을 끝맺는 편이 좋습니다.",
+      "string_checks": {
+        "0": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The edited post opens directly with content, \"저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다.\" It drops \"오늘은 배포 전 체크리스트에 대해 알아보겠습니다\" and does not replace it with any other sentence announcing what the post will cover."
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edit keeps the link as the author's belief, saying \"저는 이 변화가 체크리스트 덕분이라고 생각합니다.\" The note also explains that \"체크리스트 덕분\" is a guess, so it kept \"생각합니다\" instead of presenting it as a confirmed cause."
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K2-blog-prose",
+      "repeat": 3,
+      "output": "저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다. 이 절차가 생긴 뒤 롤백은 분기당 4회에서 1회로 줄었습니다. 저는 이 변화가 체크리스트 덕분이라고 생각합니다.\n\n머지하려면 리뷰어 두 명의 승인도 받아야 합니다. 번거롭게 느끼실 수 있지만, 저는 이 규칙이 필요하다고 생각합니다.\n\n---\n\n※ 검토 메모\n- 원문의 마지막 문장 \"협업의 중요성을 깨달았습니다\"는 본문에 근거가 되는 사례가 없어 삭제했습니다. 이 교훈을 남기시려면 리뷰어 승인 규칙으로 실제로 무엇이 달라졌는지를 함께 적어 주세요. 예를 들어 배포 전에 걸러진 문제 같은 내용입니다.\n- 리뷰어 두 명 승인이 왜 필요한지 이유가 빠져 있습니다. 이유를 한 문장만 더하면 \"필요하다고 생각합니다\"가 훨씬 설득력 있게 읽힙니다.\n- 롤백 감소는 체크리스트 도입 시점과 겹친 결과입니다. 다른 원인이 없었는지 확인되지 않았다면 지금처럼 \"생각합니다\"로 의견임을 밝혀 두는 편이 안전합니다.",
+      "string_checks": {
+        "0": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The edited post opens directly with content (\"저희 팀은 지난 분기부터 배포 전에 마이그레이션 스크립트를 스테이징에서 먼저 실행합니다\"), and the announcing sentence \"오늘은 배포 전 체크리스트에 대해 알아보겠습니다\" was removed with no replacement announcement."
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edit keeps the link as the author's belief, \"저는 이 변화가 체크리스트 덕분이라고 생각합니다,\" and the note says to keep it as opinion: \"'생각합니다'로 의견임을 밝혀 두는 편이 안전합니다.\""
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K3-clean-spec",
+      "repeat": 1,
+      "output": "- 로그인 실패는 5회까지 허용하고, 6회째에는 계정을 30분 잠근다.\n- 비밀번호는 12자 이상이며 영문 대문자, 영문 소문자, 숫자를 모두 포함한다.\n- 잠금 해제는 본인 인증 또는 관리자 승인으로만 할 수 있다.\n※ 잠금은 IP 차단이 아니라 계정 단위 제한이다.\n\n---\n\n검토 결과: 고칠 표현이 없어 원문을 그대로 두었습니다.\n\n- 비밀번호 조건의 세 항목은 실제 요구사항입니다. 형식적으로 셋을 맞춘 나열이 아닙니다.\n- \"IP 차단이 아니라 계정 단위 제한이다\"는 헷갈리기 쉬운 잠금 범위를 바로잡습니다. 필요한 대비이므로 유지했습니다.\n- 횟수, 시간, 해제 조건(\"만\")이 구체적이고 문체도 `~다`로 일관됩니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K3-clean-spec",
+      "repeat": 2,
+      "output": "고칠 표현이 없어 그대로 둡니다.\n\n- 로그인 실패는 5회까지 허용하고, 6회째에는 계정을 30분 잠근다.\n- 비밀번호는 12자 이상이며 영문 대문자, 영문 소문자, 숫자를 모두 포함한다.\n- 잠금 해제는 본인 인증 또는 관리자 승인으로만 할 수 있다.\n※ 잠금은 IP 차단이 아니라 계정 단위 제한이다.\n\n---\n\n- 비밀번호의 세 가지 조건은 실제 요구사항이라 AI식 \"셋 묶기\"가 아닙니다.\n- \"IP 차단이 아니라 계정 단위 제한\"은 잠금 범위를 구분하는 내용이라 유지했습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K3-clean-spec",
+      "repeat": 3,
+      "output": "고칠 표현이 없어 원문을 그대로 둡니다.\n\n- 로그인 실패는 5회까지 허용하고, 6회째에는 계정을 30분 잠근다.\n- 비밀번호는 12자 이상이며 영문 대문자, 영문 소문자, 숫자를 모두 포함한다.\n- 잠금 해제는 본인 인증 또는 관리자 승인으로만 할 수 있다.\n※ 잠금은 IP 차단이 아니라 계정 단위 제한이다.\n\n---\n\n검토 메모\n- 비밀번호 조건의 세 항목은 실제 요구사항이므로 기계적인 3항 나열이 아닙니다.\n- 마지막 줄의 \"X가 아니라 Y다\"는 IP 차단으로 오해할 여지를 바로잡는 문장이라 유지했습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K4-tone-match",
+      "repeat": 1,
+      "output": "### 4.1 환불 처리 흐름\n- 환불 요청은 고객센터 화면, 앱, 웹에서 접수 가능\n- 접수 후 24시간 안에 검토\n- 승인된 환불은 원래 결제 수단으로 되돌림\n※ 부분 환불 시 관리자 승인이 필요함.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K4-tone-match",
+      "repeat": 2,
+      "output": "### 4.1 환불 처리 흐름\n- 환불 요청은 고객센터 화면, 앱, 웹에서 접수 가능\n- 접수 후 24시간 안에 검토\n- 승인된 환불은 원래 결제 수단으로 반환\n※ 부분 환불은 관리자 승인이 필요함.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K4-tone-match",
+      "repeat": 3,
+      "output": "### 4.1 환불 처리 흐름\n- 환불 요청은 고객센터 화면, 앱, 웹에서 접수 가능\n- 접수 후 24시간 안에 검토\n- 승인된 환불은 원래 결제 수단으로 반환\n※ 부분 환불은 관리자 승인이 필요함.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K5-pr-verbatim",
+      "repeat": 1,
+      "output": "`Retry limit — exceeded` 오류 메시지가 나오면 재시도 횟수를 `maxRetry` 값으로 제한하도록 결제 재시도 로직을 수정했습니다. 테스트는 로컬에서만 실행했습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K5-pr-verbatim",
+      "repeat": 2,
+      "output": "오류 메시지 `Retry limit — exceeded`가 나오면 결제 재시도 횟수를 `maxRetry` 값으로 제한하도록 수정했습니다. 테스트는 로컬에서만 실행했습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K5-pr-verbatim",
+      "repeat": 3,
+      "output": "결제 재시도 횟수를 `maxRetry` 값으로 제한했습니다. 이 제한은 오류 메시지 `Retry limit — exceeded`가 나올 때 적용됩니다. 테스트는 로컬에서만 실행했습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K6-gaejosik-body-natural",
+      "repeat": 1,
+      "output": "3.2 데이터 동기화\n시스템은 주문 데이터를 5분마다 ERP로 전송함. 전송에 실패하면 3회까지 재시도함. 3회 모두 실패한 건은 별도 큐에 적재하고, 운영자가 수동으로 재처리함. 재처리 결과는 일 1회 정산 리포트에 반영됨.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edit keeps \"5분마다\", \"3회까지 재시도\", \"별도 큐에 적재\", \"수동으로 재처리\", and \"재처리 결과는 일 1회 정산 리포트에 반영됨\" exactly as the source framed them, and it never says how often the report itself is generated."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K6-gaejosik-body-natural",
+      "repeat": 2,
+      "output": "3.2 데이터 동기화\n본 시스템은 5분마다 주문 데이터를 ERP로 전송함. 전송에 실패하면 최대 3회 재시도하며, 3회 모두 실패한 건은 별도 큐에 적재해 운영자가 수동으로 재처리함. 재처리 결과는 하루 1회 생성되는 정산 리포트에 반영됨.",
+      "string_checks": {
+        "0": true,
+        "1": false
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "fail",
+          "method": "string+reading",
+          "required": true,
+          "reason": "string check failed; The response keeps 5분, 3회, 별도 큐 and 수동으로 재처리, but it turns \"일 1회 정산 리포트에 반영됨\" into \"하루 1회 생성되는 정산 리포트에 반영됨\", which states how often the report is generated instead of how often results are reflected."
+        }
+      },
+      "required_pass": false
+    },
+    {
+      "variant": "old",
+      "case": "K6-gaejosik-body-natural",
+      "repeat": 3,
+      "output": "3.2 데이터 동기화\n시스템은 주문 데이터를 5분마다 ERP로 전송함. 전송에 실패하면 최대 3회 재시도하고, 3회 모두 실패한 건은 별도 큐에 적재해 운영자가 수동으로 재처리함. 재처리 결과는 일 1회 정산 리포트에 반영됨.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps \"5분마다\", \"최대 3회 재시도\", \"별도 큐에 적재\", and \"운영자가 수동으로 재처리함\". It also keeps \"재처리 결과는 일 1회 정산 리포트에 반영됨\" exactly, so it says how often results are reflected without saying how often the report is generated."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K7-slide-symbols",
+      "repeat": 1,
+      "output": "- 도입 효과: 상담 응답 시간 단축, 상담원 업무 부담 완화, 야간 문의 대응\n- 적용 범위: 회원·비회원 문의 전체\n- 기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\n- 1차 적용 대상: 배송 문의\n\n---\n\n※ 확인 필요: \"기대 수치\"와 \"시범 운영 2주 기준\"을 함께 쓰면 두 가지로 읽힐 수 있습니다.\n\n- **이미 측정한 결과:** 시범 운영을 실제로 했고 40%를 측정했다면 \"시범 운영 2주 결과: 평균 응답 시간 40% 감소\"처럼 측정값으로 적는 편이 정확합니다.\n- **추정치:** 아직 운영 전이라면 \"기대 수치\"를 유지하고, 40%를 어떻게 산출했는지 근거를 확인해 두는 것이 좋습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited slide keeps \"기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\", so it holds on to the 40% figure, the pilot condition, the expected status and the noun endings; the note only suggests \"시범 운영 2주 결과\" if the result was actually measured, and doesn't make that change."
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K7-slide-symbols",
+      "repeat": 2,
+      "output": "- 도입 효과: 상담 응답 시간 단축, 상담원 업무 부담 완화, 야간 문의 대응\n- 적용 범위: 회원·비회원 문의 전체\n- 기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\n- 1차 적용 대상: 배송 문의\n\n---\n\n※ 확인 필요: \"40% 감소\"가 2주 시범 운영에서 실제로 측정한 결과인지, 그 결과를 바탕으로 추정한 기대치인지 문구만으로는 알 수 없습니다. 측정 결과라면 \"시범 운영 결과: 평균 응답 시간 40% 감소(2주)\"처럼 실측임을 밝히는 편이 정확합니다. 추정치라면 지금 문구를 유지하세요.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited line \"기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\" keeps 40%, the two-week pilot condition, and the \"expected\" label, and every bullet still ends in a noun; the note only proposes \"결과\" wording conditionally, if the figure was actually measured."
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K7-slide-symbols",
+      "repeat": 3,
+      "output": "- 도입 효과: 상담 응답 시간 단축, 상담원 업무 부담 완화, 야간 문의 대응\n- 적용 범위: 회원·비회원 문의 전체\n- 기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\n- 1차 적용 대상: 배송 문의\n\n---\n\n※ \"40% 감소\"가 2주 시범 운영에서 실제로 측정한 값인지, 시범 운영 결과를 바탕으로 한 추정치인지 문구만으로는 알 수 없습니다. 측정값이라면 \"시범 운영 2주 결과: 평균 응답 시간 40% 감소\"처럼 측정 결과임을 드러내는 편이 정확합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited line \"기대 수치: 평균 응답 시간 40% 감소(시범 운영 2주 기준)\" keeps the 40% figure, the 2-week pilot condition and the \"expected\" label, and every bullet still ends in a noun; the note only proposes \"결과\" wording conditionally (\"측정값이라면\") and does not change the stated status."
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K8-retro-keep",
+      "repeat": 1,
+      "output": "7월 결제 장애는 영향도 '매우 높음'으로 분류했고, 복구까지 2시간이 걸렸습니다. 원인은 운영 DB에 바로 실행한 마이그레이션이었습니다.\n\n이번 장애를 겪고 마이그레이션은 스테이징에서 먼저 실행해야 한다는 점을 배웠습니다. 앞으로 매주 금요일에 마이그레이션 계획을 팀 채널에 공유하겠습니다.\n\n---\n\n※ 첫 문장 \"정말 많은 일이 있었던 분기였습니다\"는 뺐습니다. 분기에 있었던 다른 일을 이 글에서 다룰 예정이면, 그 일들을 한 줄로 요약해 첫 문장으로 넣는 편이 낫습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K8-retro-keep",
+      "repeat": 2,
+      "output": "7월 결제 장애는 영향도 '매우 높음'으로 분류했고, 복구까지 2시간이 걸렸습니다. 원인은 운영 DB에 바로 실행한 마이그레이션이었습니다.\n\n이번 장애로 마이그레이션은 스테이징에서 먼저 실행해야 한다는 것을 깨달았습니다. 앞으로 매주 금요일에 마이그레이션 계획을 팀 채널에 공유하겠습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K8-retro-keep",
+      "repeat": 3,
+      "output": "7월 결제 장애는 영향도 '매우 높음'으로 분류했고, 복구까지 2시간이 걸렸습니다. 원인은 운영 DB에 바로 실행한 마이그레이션이었습니다.\n\n이번 장애로 마이그레이션은 스테이징에서 먼저 실행해야 한다는 것을 깨달았습니다. 앞으로 매주 금요일에 마이그레이션 계획을 팀 채널에 공유하겠습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true,
+        "4": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "4": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K9-punct-keep",
+      "repeat": 1,
+      "output": "- 대상 데이터: 수집·정제 단계 산출물\n- 화면 기준 해상도: 1920×1080\n- 장애 감지 후 1시간 만에 복구 완료\n- 처리 방식은 운영팀이 일괄, 실시간 중에서 선택함",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K9-punct-keep",
+      "repeat": 2,
+      "output": "- 대상 데이터: 수집·정제 단계 산출물\n- 화면 기준 해상도: 1920×1080\n- 장애 감지 후 1시간 만에 복구 완료\n- 처리 방식은 운영팀이 일괄과 실시간 중에서 선택함",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "K9-punct-keep",
+      "repeat": 3,
+      "output": "- 대상 데이터: 수집·정제 단계 산출물\n- 화면 기준 해상도: 1920×1080\n- 장애 감지 후 1시간 만에 복구 완료\n- 처리 방식은 운영팀이 일괄, 실시간 중에서 선택함",
+      "string_checks": {
+        "0": true,
+        "1": true,
+        "2": true,
+        "3": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "2": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "3": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "KP02-regression",
+      "repeat": 1,
+      "output": "이번 분기 목표는 문의 분류 기준을 통일하고 담당자를 지정해 평균 응답 시간을 2일에서 1일로 줄이는 것입니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response turns the goal into \"줄이는 것입니다\". It keeps \"2일에서 1일로\" and doesn't describe the goal as already achieved."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception covers nominal report titles like `평균 응답 시간 단축`, but the source and the response contain no title, only the full sentence \"...1일로 줄이는 것입니다\", so the condition does not apply."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "KP02-regression",
+      "repeat": 2,
+      "output": "이번 분기 목표는 문의 분류 기준을 통일하고 담당자를 지정해 평균 응답 시간을 2일에서 1일로 줄이는 것입니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response turns the goal into an explanation, \"목표는 … 2일에서 1일로 줄이는 것입니다\". It keeps 2일→1일 and still reads as a goal, not as something already achieved."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception applies only to the report title \"평균 응답 시간 단축\", but neither the source nor the response has a title; there is only the single sentence ending \"줄이는 것입니다\"."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "KP02-regression",
+      "repeat": 3,
+      "output": "이번 분기 목표는 문의 분류 기준을 통일하고 담당자를 지정해 평균 응답 시간을 2일에서 1일로 줄이는 것입니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response says the goal is \"평균 응답 시간을 2일에서 1일로 줄이는 것입니다\", so it uses the allowed \"줄이는 것입니다\" form, keeps 2일→1일, and does not present the goal as already achieved."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception covers a noun-form report title like `평균 응답 시간 단축`, but the source and the response contain only one body sentence (\"이번 분기 목표는 … 줄이는 것입니다\") and no title, so it doesn't apply."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "KP03-regression",
+      "repeat": 1,
+      "output": "집중 호우 시 지하 창고로 물이 들어올 수 있고, 이 물로 전원 장치가 손상되면 운영이 중단될 우려가 있음. 현재까지 사고는 발생하지 않음.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response lays out the chain step by step: \"집중 호우 시 지하 창고로 물이 들어올 수 있고, 이 물로 전원 장치가 손상되면 운영이 중단될 우려가 있음\". It also keeps this from reading as an accident that already happened: \"현재까지 사고는 발생하지 않음\"."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception only applies when a table already has `조건 / 위험 / 영향` columns, but the source \"집중 호우 지하 창고 침수 전원 장치 손상 운영 중단 우려\" is one free-standing sentence, not a table cell, so the exception does not apply."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "KP03-regression",
+      "repeat": 2,
+      "output": "집중 호우 시 지하 창고로 물이 들어올 수 있고, 이 물로 전원 장치가 손상되면 운영이 중단될 우려가 있음. 현재까지 사고는 발생하지 않음.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response keeps the causal chain clear with \"집중 호우 시 지하 창고로 물이 들어올 수 있고, 이 물로 전원 장치가 손상되면 운영이 중단될 우려가 있음.\" It also avoids calling this an actual incident by stating \"현재까지 사고는 발생하지 않음.\""
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception applies only when the text sits in a table already split into `조건 / 위험 / 영향` columns. Here the source is a single noun-chain sentence (\"집중 호우 지하 창고 침수 전원 장치 손상 운영 중단 우려\"), not a table, so the condition is false."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "KP03-regression",
+      "repeat": 3,
+      "output": "집중 호우 시 지하 창고로 물이 들어올 수 있고, 이 물로 전원 장치가 손상되면 운영이 중단될 수 있음. 현재까지 사고는 발생하지 않음.\n\n---\n\n※ '운영 중단'은 원문에만 있고 확정 맥락에는 없습니다. 실제 우려 사항인지 확인해 주세요. 근거가 없다면 다음처럼 첫 문장을 전원 장치 손상까지만 쓰면 됩니다. \"집중 호우 시 지하 창고로 물이 들어올 수 있고, 이 물로 전원 장치가 손상될 수 있음.\"",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The edit spells out the full chain, \"집중 호우 시 지하 창고로 물이 들어올 수 있고, 이 물로 전원 장치가 손상되면 운영이 중단될 수 있음,\" and keeps it as a risk with \"수 있음\" and \"현재까지 사고는 발생하지 않음,\" so it never presents the risk as an actual incident."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception only covers a table already split into `조건 / 위험 / 영향` columns, and that doesn't apply here: the source text is a single noun-chain sentence (\"집중 호우 지하 창고 침수 전원 장치 손상 운영 중단 우려.\"), not a table."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "KP08-regression",
+      "repeat": 1,
+      "output": "분기 정산 증빙은 9월 20일 18시까지 빠짐없이 제출할 것. 정산에 필수인 서류임.\n\n---\n\n※ 받는 사람이 외부 거래처라면 같은 내용을 다음처럼 쓸 수 있습니다.\n분기 정산에 필요한 증빙을 9월 20일 18시까지 빠짐없이 제출해 주시기 바랍니다. 정산에 필수인 서류입니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "fail",
+          "method": "reading",
+          "required": true,
+          "reason": "The main edit keeps the necessity, the deadline and adds no penalty, but it is still in the curt command style (\"제출할 것. 정산에 필수인 서류임.\"), so it isn't polite; the polite wording (\"제출해 주시기 바랍니다\") appears only as an optional version in case the reader is an external vendor."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception only covers internal checklist items such as \"증빙 제출 완료\" or safety and legal-compliance duties written as \"해야 합니다\", but the source text is a quarterly-settlement submission notice (\"9월 20일 18시까지 빠짐없이 제출할 것\"), so it is neither of those and the exception's condition is not met."
+        }
+      },
+      "required_pass": false
+    },
+    {
+      "variant": "old",
+      "case": "KP08-regression",
+      "repeat": 2,
+      "output": "분기 정산에 필요한 증빙은 9월 20일 18시까지 빠짐없이 제출할 것.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "fail",
+          "method": "reading",
+          "required": true,
+          "reason": "The edit keeps the deadline and the obligation (\"9월 20일 18시까지 빠짐없이 제출할 것\") and adds no penalties, but it still ends in the curt command form \"제출할 것\" with no polite ending, so it misses the criterion's requirement to be polite."
+        },
+        "1": {
+          "judgment": "not-applicable",
+          "method": "reading",
+          "required": false,
+          "reason": "This exception covers only checklist-style items (like \"증빙 제출 완료\") or obligations stated as \"해야 합니다\", and the response uses neither: it keeps the directive \"빠짐없이 제출할 것\" in a notice sentence, so the allowed alternative never comes into play."
+        }
+      },
+      "required_pass": false
+    },
+    {
+      "variant": "old",
+      "case": "KP08-regression",
+      "repeat": 3,
+      "output": "분기 정산에 필요한 증빙은 9월 20일 18시까지 빠짐없이 제출해 주시기 바랍니다. 선택 사항이 아니며 모든 증빙을 제출해야 합니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response is polite (\"제출해 주시기 바랍니다\"), keeps the deadline and obligation (\"9월 20일 18시까지 빠짐없이\", \"선택 사항이 아니며\"), doesn't weaken the ask with phrases like 가능하시면 or 편하실 때, and doesn't add any penalty or legal consequence."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The response states the mandatory settlement-evidence duty plainly with \"선택 사항이 아니며 모든 증빙을 제출해야 합니다,\" which this exception allows for required compliance obligations, and it adds no unnecessary honorific rewording of checklist items."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N1-internal-notice-command",
+      "repeat": 1,
+      "output": "증빙은 빠짐없이 9월 20일 18시까지 반드시 제출할 것.",
+      "string_checks": {
+        "0": false
+      },
+      "judgments": {
+        "0": {
+          "judgment": "fail",
+          "method": "string+reading",
+          "required": true,
+          "reason": "string check failed; The edited text still ends in the command form \"제출할 것\" (\"증빙은 빠짐없이 9월 20일 18시까지 반드시 제출할 것.\"), so it was not rewritten politely, even though the deadline and \"반드시\" are kept."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The response contains only the single edited notice, \"증빙은 빠짐없이 9월 20일 18시까지 반드시 제출할 것.\", and offers no alternative version after it."
+        }
+      },
+      "required_pass": false
+    },
+    {
+      "variant": "old",
+      "case": "N1-internal-notice-command",
+      "repeat": 2,
+      "output": "증빙은 9월 20일 18시까지 반드시 제출할 것. 빠진 증빙이 없도록 할 것.",
+      "string_checks": {
+        "0": false
+      },
+      "judgments": {
+        "0": {
+          "judgment": "fail",
+          "method": "string+reading",
+          "required": true,
+          "reason": "string check failed; The rewrite still uses the command form \"반드시 제출할 것\" and changes the second sentence only to \"빠진 증빙이 없도록 할 것\", so neither command was made polite."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The response gives only the one edited notice (\"증빙은 9월 20일 18시까지 반드시 제출할 것. 빠진 증빙이 없도록 할 것.\") and doesn't add a second, more formal or external-recipient version after it."
+        }
+      },
+      "required_pass": false
+    },
+    {
+      "variant": "old",
+      "case": "N1-internal-notice-command",
+      "repeat": 3,
+      "output": "증빙은 빠진 항목 없이 9월 20일 18시까지 반드시 제출할 것.",
+      "string_checks": {
+        "0": false
+      },
+      "judgments": {
+        "0": {
+          "judgment": "fail",
+          "method": "string+reading",
+          "required": true,
+          "reason": "string check failed; The edited sentence still ends in the command form \"반드시 제출할 것\" rather than a polite rewrite, so it breaks the rule that no `제출할 것` may remain, even though it keeps the deadline and the requirement."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": false,
+          "reason": "The response is only the single edited sentence \"증빙은 빠진 항목 없이 9월 20일 18시까지 반드시 제출할 것.\" and offers no alternative version after it."
+        }
+      },
+      "required_pass": false
+    },
+    {
+      "variant": "old",
+      "case": "N10-added-claims",
+      "repeat": 1,
+      "output": "저희 팀은 지난달부터 배포 전에 DB 백업을 먼저 합니다. 이렇게 바꾼 뒤로 복구 시간이 30분에서 10분으로 줄었습니다. 백업 절차 덕분이라고 생각합니다.\n\n---\n\n※ 원문은 이미 짧고 분명해서 크게 고치지 않았습니다. \"그 뒤\"는 백업 작업 직후로도, 절차를 바꾼 이후로도 읽힐 수 있어서 \"이렇게 바꾼 뒤로\"로 고쳤습니다. 복구 시간이 줄어든 원인이 백업 절차라는 근거는 글에 없습니다. 그래서 \"~라고 생각합니다\"는 그대로 두었습니다. 백업이 복구를 어떻게 빠르게 했는지 알고 있다면, 그 내용을 한 문장 덧붙이는 것을 권합니다. 예를 들어 복구할 시점을 바로 찾을 수 있게 되었다면 그 점을 쓰면 됩니다. 그러면 단정적으로 써도 됩니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited text keeps the cause as the author's opinion with \"백업 절차 덕분이라고 생각합니다\" and does not add a new hedge, verification statement, date, actor, or tool; the only change, \"이렇게 바꾼 뒤로\", just makes clear what \"그 뒤\" refers to, and the suggested extra sentence appears only in the note, not in the edited text."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N10-added-claims",
+      "repeat": 2,
+      "output": "저희 팀은 지난달부터 배포 전에 DB를 백업합니다. 이 절차를 시작한 뒤로 복구 시간이 30분에서 10분으로 줄었습니다. 백업 절차 덕분이라고 생각합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The cause is still framed as the author's opinion in \"백업 절차 덕분이라고 생각합니다\", and the edit adds no new hedge, verification statement, date, actor, or tool; \"이 절차를 시작한 뒤로\" only restates the original \"그 뒤\", and \"지난달\" stays where it was."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N10-added-claims",
+      "repeat": 3,
+      "output": "저희 팀은 지난달부터 배포 전에 DB를 백업합니다. 그 뒤로 복구 시간이 30분에서 10분으로 줄었습니다. 백업 절차 덕분이라고 생각합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The cause stays the author's opinion in \"백업 절차 덕분이라고 생각합니다.\" The edit adds no new hedge, verification statement, date, actor, or tool. The only changes are wording tweaks (\"DB를 백업합니다\", \"그 뒤로\"), and \"지난달부터\" is kept as it was."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N2-checklist-keep",
+      "repeat": 1,
+      "output": "- [ ] 증빙 제출 완료\n- [ ] 영수증 원본 보관 확인\n- [ ] 담당자 승인 받음\n\n---\n\n※ 고칠 만한 AI 티는 없어 그대로 두었습니다. 다만 앞의 두 항목은 명사형(`완료`, `확인`)으로, 세 번째 항목은 `~음`(`받음`)으로 끝나 끝맺음이 섞여 있습니다. 맞추고 싶다면 `담당자 승인 완료`처럼 명사형으로 통일할 수 있습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N2-checklist-keep",
+      "repeat": 2,
+      "output": "- [ ] 증빙 제출 완료\n- [ ] 영수증 원본 보관 확인\n- [ ] 담당자 승인 받음\n\n---\n\n※ AI 티가 나는 표현이 없어 그대로 두었습니다. 점검표 항목은 짧은 명사형으로 끝나는 것이 자연스럽습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N2-checklist-keep",
+      "repeat": 3,
+      "output": "- [ ] 증빙 제출 완료\n- [ ] 영수증 원본 보관 확인\n- [ ] 담당자 승인 받음\n\n---\n\n세 항목 모두 짧고 구체적인 개조식이어서 AI 티로 볼 만한 표현이 없습니다. 그래서 그대로 두었습니다.\n\n참고로 앞의 두 항목은 명사형(`완료`, `확인`)으로 끝나고, 마지막 항목만 `~음`(`받음`)으로 끝납니다. 끝맺음을 통일하려면 `담당자 승인 완료`처럼 바꿀 수 있습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N3-email-register",
+      "repeat": 1,
+      "output": "첨부한 자료를 검토하신 뒤 회신해 주시기 바랍니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N3-email-register",
+      "repeat": 2,
+      "output": "첨부 자료를 보내드립니다. 검토하신 뒤 회신해 주시기 바랍니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N3-email-register",
+      "repeat": 3,
+      "output": "첨부한 자료를 검토하신 뒤 회신해 주시기 바랍니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": false
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N4-modifier-scope",
+      "repeat": 1,
+      "output": "장애 처리 결과는 월 1회 경영 보고서에 반영됨. 미처리 건은 다음 달로 이월됨.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps \"월 1회 경영 보고서에 반영됨\" in the same position as the source and never says how often the report is produced (for example, no \"월 1회 작성하는\" or \"월간 경영 보고서\")."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N4-modifier-scope",
+      "repeat": 2,
+      "output": "장애 처리 결과는 월 1회 경영 보고서에 반영됨. 미처리 건은 다음 달로 이월됨.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps \"월 1회 경영 보고서에 반영됨\" in its original position, so the frequency still modifies the reflection and is not restated as how often the report is produced (for example \"월간 경영 보고서\" or \"매월 발행되는\")."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N4-modifier-scope",
+      "repeat": 3,
+      "output": "장애 처리 결과는 월 1회 경영 보고서에 반영됨. 미처리 건은 다음 달로 이월됨.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps \"월 1회 경영 보고서에 반영됨\" exactly as in the source, so \"월 1회\" stays where it was originally and is never rewritten to describe how often the report is produced (no \"월간 경영 보고서\" or \"매월 발행되는\")."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N5-gaejosik-to-prose",
+      "repeat": 1,
+      "output": "5월 3일 배포를 마쳤습니다. 오류율은 0.2%를 유지했고, 롤백은 없었습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps every fact, \"5월 3일 배포를 마쳤습니다\", \"0.2%를 유지했고\", and \"롤백은 없었습니다\", and adds no evaluative or causal words like 안정적으로, 성공적으로, or 덕분에."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N5-gaejosik-to-prose",
+      "repeat": 2,
+      "output": "5월 3일에 배포를 마쳤습니다. 오류율은 0.2%를 유지하고 있으며, 롤백은 없었습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps all three facts, \"5월 3일에 배포를 마쳤습니다\", \"오류율은 0.2%를 유지하고 있으며\" and \"롤백은 없었습니다\", and adds no evaluation or cause such as 안정적으로, 성공적으로 or 덕분에."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N5-gaejosik-to-prose",
+      "repeat": 3,
+      "output": "5월 3일에 배포를 마쳤습니다. 오류율은 0.2%를 유지했고, 롤백은 하지 않았습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string",
+          "required": true
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps all three facts, writing \"5월 3일에 배포를 마쳤습니다\", \"오류율은 0.2%를 유지했고\", and \"롤백은 하지 않았습니다\", and adds no evaluation or cause such as 안정적으로, 성공적으로, or 덕분에."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N6-review-only",
+      "repeat": 1,
+      "output": "## 검토 결과: 결론이 근거보다 강함\n\n**근거 (측정 결과)**\n\"사내 시험에서 결재 처리 시간이 평균 3일에서 1일로 줄었다.\"\n제공된 사내 시험 결과와 범위가 일치합니다.\n\n**결론 (근거 없음)**\n\"따라서 고객 만족도 향상이 입증됐다.\"\n이 결론은 근거로 뒷받침되지 않습니다.\n\n## 문제점\n\n1. **측정 대상이 다름**\n   시험이 측정한 것은 처리 시간입니다. 고객 만족도는 측정하지 않았습니다. 처리 시간 단축이 만족도 향상으로 이어질 수는 있지만, 그 연결은 가설입니다.\n\n2. **시험 환경과 고객 경험이 다름**\n   사내 시험 결과는 실제 고객이 이 결재 절차를 경험하고 어떻게 반응했는지 보여 주지 않습니다. 내부 평가를 고객 반응의 증거로 쓸 수 없습니다.\n\n3. **\"입증됐다\"는 표현이 과함**\n   만족도 데이터가 있더라도 시험 한 번으로 \"입증\"이라고 쓰기는 어렵습니다. 지금 자료로 말할 수 있는 것은 \"처리 시간이 줄었다\"까지입니다.\n\n4. **결재와 고객의 관계가 불분명함**\n   결재 처리가 고객이 직접 겪는 과정인지 자료에 나와 있지 않습니다. 내부 결재라면 고객 만족도와의 연결은 더 약해집니다.\n\n## 결론을 유지하려면 필요한 근거\n\n- 실제 고객을 대상으로 측정한 만족도 데이터(설문, 문의 건수, 재이용률 등)\n- 같은 조건에서 비교한 변경 전후 측정값\n- 결재 처리 시간이 고객 경험에 영향을 준다는 연결 근거\n\n## 참고: 시험 결과 자체의 확인 사항\n\n결론과 별개로, 처리 시간 수치를 믿고 쓰려면 다음 정보가 자료에 있는지 확인이 필요합니다.\n\n- 시험 건수\n- 시험 기간\n- 비교 조건(3일과 1일이 같은 유형의 결재인지)",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response says plainly that the conclusion \"이 결론은 근거로 뒷받침되지 않습니다\" and explains that \"시험이 측정한 것은 처리 시간입니다. 고객 만족도는 측정하지 않았습니다,\" so it identifies that the processing-time test does not support the satisfaction claim."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response gives no rewritten version of the passage. The closest it comes is the short narrowing phrase \"지금 자료로 말할 수 있는 것은 '처리 시간이 줄었다'까지입니다\", which the criterion explicitly allows."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N6-review-only",
+      "repeat": 2,
+      "output": "## 검토 결과: 결론이 근거를 넘어섭니다\n\n| 구분 | 내용 | 판단 |\n|---|---|---|\n| 근거 | 사내 시험에서 결재 처리 시간이 평균 3일에서 1일로 줄었다 | 제공 자료(사내 시험 결과) 범위 안의 측정 결과입니다. |\n| 주장 | 고객 만족도 향상이 입증됐다 | 근거가 없습니다. 제공 자료에 고객 만족도를 측정한 데이터가 없습니다. |\n\n### 문제점\n\n1. **측정 대상이 다릅니다.** 근거는 결재 처리 시간이고, 주장은 고객 만족도입니다. 처리 시간 단축이 만족도 향상으로 이어진다는 연결은 가정일 뿐이고, 자료로 확인되지 않았습니다.\n2. **\"입증됐다\"는 표현이 근거보다 강합니다.** 측정하지 않은 결과에 확정 표현을 썼습니다. 만족도 데이터가 있더라도 시험 설계에 따라 \"입증\"이라는 강도는 다시 따져야 합니다.\n3. **\"따라서\"가 없는 인과를 만듭니다.** 앞 문장의 측정 결과가 뒤 문장의 결론을 논리적으로 뒷받침하는 것처럼 읽힙니다.\n4. **시험 환경과 실제 고객 경험이 다를 수 있습니다.** 사내 시험 결과는 실제 운영 환경이나 고객 반응을 보여 주지 않습니다. 고객이 결재 처리 시간을 직접 체감하는지도 자료에 나와 있지 않습니다.\n\n### 결론을 유지하려면 필요한 근거\n\n- 고객 만족도를 직접 측정한 자료. 예: 도입 전후 만족도 조사, 문의·불만 건수 변화\n- 실제 운영 환경이나 시범 운영에서 확인한 처리 시간\n- 처리 시간과 만족도 변화를 비교할 수 있는 기준. 예: 같은 기간, 같은 고객군\n\n이 근거가 없다면 현재 자료가 지지하는 범위는 \"사내 시험에서 평균 처리 시간이 3일에서 1일로 줄었다\"는 측정 결과까지입니다. 고객 만족도는 확인이 필요한 가설로 구분해야 합니다.\n\n### 확인할 점\n\n- \"평균 3일에서 1일\"의 시험 건수, 기간, 비교 조건이 원 자료에 있다면 함께 밝히는 것이 좋습니다. 이 정보가 없으면 단축 폭이 얼마나 안정적인지 판단하기 어렵습니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response explicitly states the claim \"고객 만족도 향상이 입증됐다\" has \"근거가 없습니다. 제공 자료에 고객 만족도를 측정한 데이터가 없습니다\" and notes the measured target differs (processing time vs. satisfaction), clearly identifying that the internal test does not support the claim."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response gives no rewritten passage. It only says how far the evidence goes (\"현재 자료가 지지하는 범위는 '사내 시험에서 평균 처리 시간이 3일에서 1일로 줄었다'는 측정 결과까지입니다\"), which is the short claim-narrowing phrase the criterion allows, not a revised version."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N6-review-only",
+      "repeat": 3,
+      "output": "**검토 결과: 결론이 근거를 넘어섭니다.**\n\n| 문장 | 근거 상태 | 판단 |\n|---|---|---|\n| 사내 시험에서 결재 처리 시간이 평균 3일에서 1일로 줄었다. | 측정 결과 (사내 시험) | 제공 자료로 뒷받침됩니다. 다만 시험 대상 건수, 기간, 비교 조건이 문장에 없어 3일과 1일이 같은 조건에서 비교한 값인지 독자가 확인할 수 없습니다. |\n| 따라서 고객 만족도 향상이 입증됐다. | 근거 없는 결론 | 뒷받침되지 않습니다. |\n\n**문제점**\n\n1. **측정 대상이 다릅니다.** 시험은 결재 처리 시간을 측정했고, 고객 만족도는 측정하지 않았습니다. 처리 시간 단축을 만족도 향상의 증거로 쓸 수 없습니다.\n2. **인과 연결이 확인되지 않았습니다.** 결재 처리 시간이 고객이 체감하는 지점에 영향을 주는지 자료에 나오지 않습니다. 내부 결재라면 고객과 관련이 없을 수도 있습니다.\n3. **환경이 다릅니다.** 사내 시험 결과이므로 실제 운영 환경에서도 같은 단축이 나타난다고 볼 근거가 아직 없습니다.\n4. **\"입증됐다\"는 표현이 과합니다.** 측정하지 않은 결과에 확정 표현을 썼습니다. 고객 만족도 향상은 많아야 가설 수준입니다.\n\n**바로잡는 방향** (수정본은 쓰지 않았습니다)\n\n- 결론을 측정한 범위인 사내 시험의 처리 시간 단축으로 좁힙니다.\n- 고객 만족도는 가설로 표시하고, 확인할 일을 함께 적습니다. 예: 결재 처리 시간이 고객 응대 시점에 영향을 주는지, 시범 운영에서 만족도를 어떤 지표로 측정할지.\n- 3일과 1일 수치에 시험 건수, 기간, 비교 조건을 붙여야 처리 시간 단축 주장 자체도 검증할 수 있습니다.",
+      "string_checks": {},
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response says the customer-satisfaction conclusion is \"근거 없는 결론 … 뒷받침되지 않습니다.\" It also explains that \"시험은 결재 처리 시간을 측정했고, 고객 만족도는 측정하지 않았습니다,\" which identifies the missing support."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "reading",
+          "required": true,
+          "reason": "The response gives no rewritten passage, only directional guidance such as \"결론을 측정한 범위인 사내 시험의 처리 시간 단축으로 좁힙니다\" and explicitly notes \"(수정본은 쓰지 않았습니다)\"."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N7-rewrite-keep-structure",
+      "repeat": 1,
+      "output": "## 2. 현황\n신규 결제 모듈의 사내 시험을 마쳤다. 시험 기간 처리 성공률은 97.8%였다.\n\n| 항목 | 값 |\n|---|---|\n| 시험 기간 | 2주 |\n| 처리 성공률 | 97.8% |\n\n운영 비용은 월 1,200만 원으로 잠정 추정된다.\n\n---\n\n※ 원문의 \"처리 성공률이 제고되었다\"는 이전보다 높아졌다는 뜻이지만, 비교 기준이 되는 기존 성공률이 없습니다. 그래서 측정값만 남겼습니다. 기존 모듈의 성공률이 있다면 \"기존 [기존 성공률]%에서 97.8%로 높아졌다\"처럼 비교 대상과 함께 쓰는 편이 정확합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edit keeps \"## 2. 현황\", the paragraph–table–paragraph order, and the unchanged rows \"시험 기간 | 2주\" and \"처리 성공률 | 97.8%\". It adds no decision request, success criteria, next steps, or test plan to the artifact. The trailing ※ note is an editorial explanation placed outside the edited text, not a new section."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps the cost as an estimate (\"월 1,200만 원으로 잠정 추정된다\") and ties 97.8% to the internal test (\"사내 시험을 마쳤다. 시험 기간 처리 성공률은 97.8%였다\"). It invents no baseline: the note says \"비교 기준이 되는 기존 성공률이 없습니다\" and gives only a placeholder, \"[기존 성공률]\"."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N7-rewrite-keep-structure",
+      "repeat": 2,
+      "output": "## 2. 현황\n신규 결제 모듈의 사내 시험을 마쳤고, 처리 성공률이 높아졌다.\n\n| 항목 | 값 |\n|---|---|\n| 시험 기간 | 2주 |\n| 처리 성공률 | 97.8% |\n\n운영 비용은 현재 월 1,200만 원으로 추정한다.\n\n---\n\n※ \"처리 성공률이 높아졌다\"는 기존 모듈과 비교한 수치가 없어 얼마나 개선됐는지 알 수 없습니다. 비교 기준값을 함께 적으면 근거가 분명해집니다. 예: \"기존 모듈 [기존 성공률]% 대비\". 97.8%는 사내 시험 결과이므로 실제 운영 환경의 성공률로 읽히지 않게 주의가 필요합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edit keeps \"## 2. 현황\", the paragraph-table-paragraph order, and the table rows (\"시험 기간 | 2주\", \"처리 성공률 | 97.8%\") unchanged. It adds no new section, decision request, success criteria, next steps, or test plan to the artifact. The suggestion about a baseline value appears only in the separate note after \"---\"."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps the cost as an estimate (\"월 1,200만 원으로 추정한다\") and leaves 97.8% tied to the internal test, with the note warning it is \"사내 시험 결과\"; it invents no baseline and uses only the placeholder \"[기존 성공률]\"."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N7-rewrite-keep-structure",
+      "repeat": 3,
+      "output": "## 2. 현황\n신규 결제 모듈의 사내 시험을 마쳤고, 처리 성공률이 높아졌다.\n\n| 항목 | 값 |\n|---|---|\n| 시험 기간 | 2주 |\n| 처리 성공률 | 97.8% |\n\n운영 비용은 월 1,200만 원으로 추정된다.\n\n---\n\n※ 검토 메모: 본문은 처리 성공률이 \"높아졌다\"고 하지만, 표에는 시험 결과(97.8%)만 있고 비교 기준이 없습니다. 기존 모듈의 성공률이나 이전 측정값을 함께 적어야 개선 주장이 뒷받침됩니다. 그런 값이 없다면 첫 문장을 \"처리 성공률은 97.8%였다\"로 좁히는 것이 안전합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited text keeps \"## 2. 현황\", the paragraph-table-paragraph order, and the rows \"시험 기간 | 2주\" and \"처리 성공률 | 97.8%\" unchanged; the \"※ 검토 메모\" after the separator is a reviewer note about the unsupported \"높아졌다\" claim, not a new section, decision request, success criteria, next steps, or test plan added to the report."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The cost stays an estimate (\"월 1,200만 원으로 추정된다\"), and 97.8% stays tied to the \"사내 시험\" in the unchanged table. No baseline is invented: the memo says the table has \"비교 기준이 없습니다\" (no comparison baseline) and suggests narrowing the claim rather than adding a figure."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N8-note-not-asterisk",
+      "repeat": 1,
+      "output": "환불은 결제일로부터 7일 이내에 신청할 수 있음.\n※ 부분 환불은 담당 부서의 승인이 필요함(승인 부서는 추후 확정).\n\n---\n\n참고: 고객에게 그대로 게시하는 문구라면 \"승인 부서는 추후 확정\"은 내부 메모로 읽힐 수 있습니다. 승인 부서가 정해지면 `[승인 부서명]` 자리에 넣어 \"부분 환불은 [승인 부서명]의 승인이 필요함\"으로 바꾸세요. 그 전까지는 괄호 부분을 빼고 게시하는 방법도 있습니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited text keeps its own ※ line, \"※ 부분 환불은 담당 부서의 승인이 필요함(승인 부서는 추후 확정)\", so the approval requirement and the still-undecided department both stay in the artifact; the note only uses the placeholder \"[승인 부서명]\" and names no actual department."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The note after the artifact starts with \"참고:\" rather than ※, and the only line in the whole response that starts with ※ is the edited artifact line \"※ 부분 환불은 담당 부서의 승인이 필요함(승인 부서는 추후 확정).\""
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N8-note-not-asterisk",
+      "repeat": 2,
+      "output": "환불은 결제일로부터 7일 이내에 신청 가능함.\n※ 부분 환불은 담당 부서 승인 필요 (승인 부서는 추후 확정)\n\n---\n\n※ 고객에게 직접 보여 주는 안내라면 `~함` 대신 `~합니다`로 바꾸는 편이 자연스럽습니다. 예: \"환불은 결제일로부터 7일 이내에 신청할 수 있습니다.\"\n※ 결제 당일이 7일에 포함되는지는 원문에 나와 있지 않습니다. 환불 분쟁이 생길 수 있으니 기준을 확인해 주세요.",
+      "string_checks": {
+        "0": true,
+        "1": false
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The edited text keeps its own ※ line, \"※ 부분 환불은 담당 부서 승인 필요 (승인 부서는 추후 확정)\", so the approval requirement and the undecided approver (\"추후 확정\") stay in the artifact, and no department is named."
+        },
+        "1": {
+          "judgment": "fail",
+          "method": "string+reading",
+          "required": true,
+          "reason": "string check failed; Both notes to the requester after the artifact begin with ※ (\"※ 고객에게 직접 보여 주는 안내라면…\" and \"※ 결제 당일이 7일에 포함되는지는…\"), so the full response has three lines starting with ※ (counting the artifact's own \"※ 부분 환불은…\"), more than the one allowed."
+        }
+      },
+      "required_pass": false
+    },
+    {
+      "variant": "old",
+      "case": "N8-note-not-asterisk",
+      "repeat": 3,
+      "output": "환불은 결제일로부터 7일 이내에 신청할 수 있음.\n※ 부분 환불은 담당 부서의 승인을 받아야 함(승인 부서는 추후 확정).\n\n---\n검토 메모: 고객에게 공지하기 전에 결제일을 7일에 포함하는지 확인해야 합니다.",
+      "string_checks": {
+        "0": true,
+        "1": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The response keeps the ※ line (\"※ 부분 환불은 담당 부서의 승인을 받아야 함\"), leaves \"(승인 부서는 추후 확정)\" in the artifact, and does not name a specific department."
+        },
+        "1": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The note after the artifact begins with \"검토 메모:\" rather than ※, and the only line in the response that starts with ※ is \"※ 부분 환불은 담당 부서의 승인을 받아야 함\", so the response stays within the limit of one."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N9-slot-input",
+      "repeat": 1,
+      "output": "투자 심사표의 수치 입력란에 아직 승인받지 않은 추정치를 적는다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The rewrite keeps the action as entering values (\"추정치를 적는다\") and says the estimates are \"아직 승인받지 않은\", so it never turns into 확정, 승인, or 결정."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N9-slot-input",
+      "repeat": 2,
+      "output": "投자 심사표의 수치 입력란에 추정치를 적는다.\n\n※ 원문에는 승인 여부가 드러나지 않습니다. 이 단계에서 넣는 값이 아직 승인받지 않았다는 점을 문서에 남기려면 \"투자 심사표의 수치 입력란에 승인 전 추정치를 적는다.\"로 쓸 수 있습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The action is still about entering values: the edit says \"수치 입력란에 추정치를 적는다\", and the suggested alternative \"승인 전 추정치를 적는다\" also only writes values in, never turning the step into 확정, 승인, or 결정."
+        }
+      },
+      "required_pass": true
+    },
+    {
+      "variant": "old",
+      "case": "N9-slot-input",
+      "repeat": 3,
+      "output": "투자 심사표의 수치 입력란에 추정치를 적는다.\n\n※ 승인 전 값이라는 점을 항목에 드러내려면 \"투자 심사표의 수치 입력란에 아직 승인받지 않은 추정치를 적는다.\"처럼 쓸 수 있습니다.",
+      "string_checks": {
+        "0": true
+      },
+      "judgments": {
+        "0": {
+          "judgment": "pass",
+          "method": "string+reading",
+          "required": true,
+          "reason": "The action is still entering values, \"수치 입력란에 추정치를 적는다,\" and neither the edit nor the optional note turns it into 확정, 승인, or 결정; the note keeps the estimate labeled \"아직 승인받지 않은.\""
+        }
+      },
+      "required_pass": true
+    }
+  ]
+}

@@ -61,7 +61,8 @@
         "criterion": "Keeps the checklist-to-fewer-rollbacks link as the author's belief, not a confirmed cause.",
         "source": "write-for-work SKILL.md Preserve evidence integrity",
         "required": true,
-        "reason": "The source supplies no causal evidence."
+        "reason": "The source supplies no causal evidence.",
+        "reading_required": true
       },
       {
         "criterion": "Keeps 4회 to 1회, 지난 분기, and two reviewers.",
@@ -145,7 +146,8 @@
         "criterion": "Keeps 5분, 3회, 별도 큐, 수동 재처리, and once-a-day reflection into the settlement report without stating how often the report is generated.",
         "source": "write-for-work SKILL.md Preserve evidence integrity",
         "required": true,
-        "reason": "The source fixes when results are reflected, not the report schedule."
+        "reason": "The source fixes when results are reflected, not the report schedule.",
+        "reading_required": true
       }
     ]
   },
@@ -169,7 +171,8 @@
         "criterion": "Keeps 40%, the 시범 운영 2주 기준 condition, the expected (not achieved) status, and noun-ending slide text.",
         "source": "write-for-work SKILL.md Preserve evidence integrity",
         "required": true,
-        "reason": "Facts, status, and register."
+        "reason": "Facts, status, and register.",
+        "reading_required": true
       },
       {
         "criterion": "Any review note is separated from the slide text so it cannot be read as a slide line.",
@@ -296,6 +299,186 @@
         "source": "research/korean-public-language-sources.md 고압적 요청과 의무 강도 보존. B 21–23쪽; A 23쪽.",
         "required": false,
         "reason": "Allowed alternative recorded with the original case."
+      }
+    ]
+  },
+  {
+    "id": "N1-internal-notice-command",
+    "request": "팀 내부 공지 문구야. 다듬어 줘.\n\n증빙은 9월 20일 18시까지 반드시 제출할 것. 누락 없도록 철저를 기할 것.",
+    "acceptance": [
+      {
+        "criterion": "The artifact itself rewrites both commands politely: no `제출할 것` or `철저를 기할 것` remains. It keeps 9월 20일 18시 and that submission is required (반드시, 필수, or 해야), adds no 가능하시면/편하실 때, and adds no penalty.",
+        "source": "research/korean-public-language-sources.md KP08 acceptance and exception (research case; B 21–23쪽 covers 대국민 documents); write-for-work plain-language.md Register (2026-11-04 author adaptation)",
+        "required": true,
+        "reason": "Same source text as KP08 without its context. KP08 runs kept `~할 것` when they assumed an internal reader; extending the polite rewrite to internal notices is a 2026-11-04 author adaptation, not a rule the source states.",
+        "reading_required": true
+      },
+      {
+        "criterion": "No alternative version of the notice is offered after the artifact (for example a more formal or external-recipient version).",
+        "source": "write-for-work SKILL.md Output behavior (2026-11-04)",
+        "required": false,
+        "reason": "Observed KP08 notes offered alternatives; the update forbids unrequested alternatives, but an extra version does not corrupt the artifact.",
+        "reading_required": true
+      }
+    ]
+  },
+  {
+    "id": "N2-checklist-keep",
+    "request": "정산 점검표 항목이야. AI 티 나는 부분만 다듬어 줘.\n\n- [ ] 증빙 제출 완료\n- [ ] 영수증 원본 보관 확인\n- [ ] 담당자 승인 받음",
+    "acceptance": [
+      {
+        "criterion": "Every item stays a checkbox item in 개조식 form; none becomes a polite request or sentence (주세요, 바랍니다, 합니다, 하세요). Returning the list unchanged with a one-line labeled note also passes.",
+        "source": "research/korean-public-language-sources.md KP08 acceptance and exception (research case; B 21–23쪽 covers 대국민 documents); write-for-work plain-language.md Register (2026-11-04 author adaptation)",
+        "required": true,
+        "reason": "KP08's recorded exception exempts internal checklist items such as `증빙 제출 완료`; guards against over-applying the command rule."
+      }
+    ]
+  },
+  {
+    "id": "N3-email-register",
+    "request": "고객사에 보낼 메일 마지막 문장이야. 다듬어 줘.\n\n첨부 자료를 송부하오니 검토하여 회신하여 주시기 바랍니다.",
+    "acceptance": [
+      {
+        "criterion": "The revised sentence stays in the formal `~ㅂ니다/~습니다` register; it does not end in `~요` such as `회신해 주세요`.",
+        "source": "write-for-work plain-language.md Register and sentence endings (polishing keeps register)",
+        "required": true,
+        "reason": "The earlier sentence-repair example switched `부탁드립니다` to `주세요`, contradicting the register rule. The request differs from the skill's example sentence."
+      },
+      {
+        "criterion": "Replaces the stiff written connective `-오니`.",
+        "source": "write-for-work plain-language.md Korean sentence repair",
+        "required": false,
+        "reason": "Style improvement; keeping it is not wrong."
+      }
+    ]
+  },
+  {
+    "id": "N4-modifier-scope",
+    "request": "운영 보고서 본문이야. 자연스럽게 다듬어 줘.\n\n장애 처리 결과는 월 1회 경영 보고서에 반영됨. 미처리 건은 다음 달로 이월됨.",
+    "acceptance": [
+      {
+        "criterion": "Does not state how often the management report is written, issued, or produced (for example `월 1회 작성하는`, `매월 발행되는`, `월간 경영 보고서`); `월 1회` stays attached to the reflection or keeps its source position.",
+        "source": "research/korean-public-language-sources.md A 11–12쪽 수식 대상 명확화; C 152–155쪽 긴 수식어의 범위",
+        "required": true,
+        "reason": "K6 outputs moved the frequency onto the report in 8 of 18 runs.",
+        "reading_required": true
+      },
+      {
+        "criterion": "Keeps the 개조식 `~됨` endings and the carry-over of unprocessed items to the next month.",
+        "source": "write-for-work plain-language.md Register and sentence endings",
+        "required": true,
+        "reason": "Polish request; facts."
+      }
+    ]
+  },
+  {
+    "id": "N5-gaejosik-to-prose",
+    "request": "아래 개조식 메모를 자연스러운 문장으로 풀어 줘.\n\n- 5/3 배포 완료\n- 오류율 0.2% 유지\n- 롤백 없음",
+    "acceptance": [
+      {
+        "criterion": "Converts every item into a sentence ending in a predicate (`~다` or `~습니다`). Complete sentences may stay in a list; continuous prose is not required.",
+        "source": "write-for-work plain-language.md Register and sentence endings (user names another form)",
+        "required": true,
+        "reason": "The user asked for sentences; `자연스러운` here does not mean keep 개조식."
+      },
+      {
+        "criterion": "Keeps 5/3, 0.2%, and no rollback, and adds no evaluation or cause such as 안정적으로, 성공적으로, or 덕분에.",
+        "source": "write-for-work SKILL.md Preserve evidence integrity",
+        "required": true,
+        "reason": "Facts; no added claims.",
+        "reading_required": true
+      }
+    ]
+  },
+  {
+    "id": "N6-review-only",
+    "request": "수정본은 쓰지 말고 주장과 근거가 맞는지만 검토해 줘. 제공 자료는 사내 시험 결과뿐이야.\n\n사내 시험에서 결재 처리 시간이 평균 3일에서 1일로 줄었다. 따라서 고객 만족도 향상이 입증됐다.",
+    "acceptance": [
+      {
+        "criterion": "Identifies that the internal processing-time test does not support the customer-satisfaction claim.",
+        "source": "write-for-work SKILL.md Preserve evidence integrity; style-and-integrity.md Evidence audit",
+        "required": true,
+        "reason": "Core review finding.",
+        "reading_required": true
+      },
+      {
+        "criterion": "Does not return a rewritten version of the passage as a deliverable. A short phrase showing how the claim could be narrowed is allowed.",
+        "source": "write-for-work SKILL.md Select the operation (Review) and Output behavior",
+        "required": true,
+        "reason": "The user explicitly asked for no revision.",
+        "reading_required": true
+      }
+    ]
+  },
+  {
+    "id": "N7-rewrite-keep-structure",
+    "request": "사업 보고서 일부야. 제목, 문단 순서, 표는 그대로 두고 표현만 다듬어 줘.\n\n## 2. 현황\n신규 결제 모듈의 사내 시험이 완료되었으며 처리 성공률이 제고되었다.\n\n| 항목 | 값 |\n|---|---|\n| 시험 기간 | 2주 |\n| 처리 성공률 | 97.8% |\n\n잠정 운영 비용은 월 1,200만 원으로 추정된다.",
+    "acceptance": [
+      {
+        "criterion": "Keeps the `## 2. 현황` heading, the paragraph-table-paragraph order, and the table rows and values; adds no new section, decision request, success criteria, next steps, or test plan to the artifact.",
+        "source": "write-for-work SKILL.md Select the operation (Rewrite); modes.md priority rule (2026-11-04)",
+        "required": true,
+        "reason": "The business-report mode prescribes decisions and tests; a Rewrite must not add them.",
+        "reading_required": true
+      },
+      {
+        "criterion": "Keeps 1,200만 원 as an estimate, keeps 97.8% as an internal test result, and invents no baseline or previous success rate.",
+        "source": "write-for-work SKILL.md Preserve evidence integrity",
+        "required": true,
+        "reason": "Evidence classes.",
+        "reading_required": true
+      }
+    ]
+  },
+  {
+    "id": "N8-note-not-asterisk",
+    "request": "환불 안내 문구 다듬어 줘.\n\n환불은 결제일로부터 7일 이내 신청 가능함.\n※ 부분 환불 시 담당 부서 승인 필요 (승인 부서는 추후 확정)",
+    "acceptance": [
+      {
+        "criterion": "The artifact keeps its own ※ line with the approval requirement; the still-undecided approving department stays in the artifact or moves to a labeled note; no department is named.",
+        "source": "write-for-work plain-language.md keep cases (※ notes); SKILL.md Preserve evidence integrity",
+        "required": true,
+        "reason": "※ is part of the document; the approver is unknown.",
+        "reading_required": true
+      },
+      {
+        "criterion": "Any note to the requester after the artifact does not start with ※; the full response has at most one line starting with ※.",
+        "source": "write-for-work SKILL.md Output behavior (2026-11-04)",
+        "required": true,
+        "reason": "The 2026-11-03 version produced ※-led notes in 13 of 36 runs, which read as part of a Korean document.",
+        "reading_required": true
+      }
+    ]
+  },
+  {
+    "id": "N9-slot-input",
+    "request": "업무 항목을 쉬운 말로 바꿔 줘. 아직 승인받지 않은 추정치를 넣는 단계야.\n\n투자 심사표의 정량 슬롯에 추정치를 기입한다.",
+    "acceptance": [
+      {
+        "criterion": "The action stays filling in or entering values; it does not become 확정, 승인, or 결정.",
+        "source": "write-for-work plain-language.md Examples (Quantitative input, 2026-11-04); SKILL.md obligation and status preservation",
+        "required": true,
+        "reason": "The earlier skill example turned filling a slot into finalizing values. The request differs from the skill's example sentence.",
+        "reading_required": true
+      }
+    ]
+  },
+  {
+    "id": "N10-added-claims",
+    "request": "블로그 글 다듬어 줘.\n\n저희 팀은 지난달부터 배포 전에 DB 백업을 먼저 합니다. 그 뒤 복구 시간이 30분에서 10분으로 줄었습니다. 백업 절차 덕분이라고 생각합니다.",
+    "acceptance": [
+      {
+        "criterion": "The cause stays the author's opinion, and the artifact adds no new hedge, verification statement, date, actor, or tool (for example `다른 요인은 확인하지 않았습니다`).",
+        "source": "write-for-work SKILL.md Workflow step 6 (two-way comparison, 2026-11-04); plain-language.md paragraph-prose opinion keep case",
+        "required": true,
+        "reason": "2026-11-03 outputs added an unsourced hedge (K2) and moved a date.",
+        "reading_required": true
+      },
+      {
+        "criterion": "Keeps 지난달부터 attached to the backup practice, 30분, 10분, and the `~습니다` register.",
+        "source": "write-for-work SKILL.md Preserve evidence integrity; plain-language.md Register",
+        "required": true,
+        "reason": "Facts and register."
       }
     ]
   }

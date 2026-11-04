@@ -63,7 +63,7 @@ Do not force every document into the same template. Keep structure only when it 
 
 - Match the source's appropriate level of formality instead of making every document conversational.
 - Use a supplied writing sample to match register and terminology, not to import its facts or opinions. Without one, keep the source's appropriate voice; natural Korean does not require casual speech.
-- Prefer concrete nouns, active verbs, and short declarative sentences. In Korean, this shortens a sentence's content, not its ending; when polishing, keep each element's register as described in [Register and sentence endings](references/plain-language.md#register-and-sentence-endings).
+- Prefer concrete nouns, active verbs, and short declarative sentences. In Korean, this shortens a sentence's content, not its ending; when polishing, keep each element's register as described in [Register and sentence endings](references/plain-language.md#register-and-sentence-endings). A command addressed to the people who must act, such as `~할 것` in a notice, request, or message, is a tone problem to rewrite as described there, not a register to keep.
 - Use familiar Korean by default. Replace imported workplace jargon with the specific action, condition, result, or object it refers to.
 - Use the simplest accurate term. Explain required jargon at first use for non-technical readers.
 - Remove promotional weight, empty conclusions, vague attribution, repetitive transitions, mechanical groups of three, and decorative emphasis.
@@ -99,9 +99,11 @@ If a document mixes modes, choose one primary mode and borrow only the necessary
 3. Record the central claim, supporting evidence, assumptions, and open questions.
 4. Design the smallest useful outline around the reader's task.
 5. Rewrite for directness, specificity, and natural flow.
-6. Compare the rewrite against the source for factual details and meaning, including conditions, negation, scope, causal direction, and claim strength. Restore any lost constraint; flag missing evidence separately instead of inventing it.
+6. Compare the rewrite against the source in both directions. Each number, date, name, condition, negation, scope word, causal link, and obligation or possibility marker keeps its strength and the word it modifies; each added clause traces to the source or supplied context. Restore lost constraints. Remove or flag added causes, schedules, actors, hedges, verification claims, and consequences instead of inventing evidence.
 7. Check that headings and visual structure reflect the content rather than decorate it.
-8. Return the requested artifact first, followed by only the review notes that affect trust or decisions.
+8. Return the requested result first, followed only by the notes that Output behavior allows.
+
+For Review, apply steps 1–3, then check the source against these rules and report each finding with its passage. Do not produce a rewritten artifact. A short phrase showing how to narrow a claim is allowed; give fuller replacement wording only when requested.
 
 For HTML, verify the document structure and render it at desktop and mobile widths when browser tools are available. Preserve the original and create a separate revised file unless the user explicitly requests in-place editing.
 
@@ -109,9 +111,9 @@ When converting project experience into reusable guidance, keep only generalized
 
 ## Output behavior
 
-- Return the revised content first.
-- For Compare, provide the original artifact, revised artifact, and a compact change table.
-- When review notes are requested, separate factual corrections from stylistic edits. Otherwise omit sentences that merely report what you changed or preserved, whether inline or separate. Keep qualifications or unresolved issues needed to make the deliverable trustworthy; do not routinely announce that you did not verify externally. Place any note after the artifact under a clear label or separator so it cannot be read as part of the artifact, for example as a `※` line on a slide.
+- Return the result of the requested operation first: the artifact for Draft, Rewrite, or Restructure; findings for Review; the original artifact, revised artifact, and a compact change table for Compare.
+- When review notes are requested, separate factual corrections from stylistic edits. Otherwise add a note only for an item the requester must resolve before using the artifact: an ambiguity or missing fact left in place, a claim stronger than its evidence, a source claim you removed, or a requested change you could not make safely. Give each item one sentence naming it and the decision or check it needs. Do not explain wording edits, list what you kept, explain why a rule did not apply, or offer alternative versions or new content unless asked; a follow-up moved out of a message under the sender-commitment rule above stays as a labeled suggestion. A source claim kept with its original hedge needs no note. If the source needs no change, return it unchanged with a one-line labeled note saying so. Do not routinely announce that you did not verify externally.
+- Place any note after the artifact under a label addressed to the requester, such as `검토 메모:` or `Note:`, so it cannot be read as part of the artifact. Do not start a note with `※`, a footnote mark, or a list style the artifact uses; in Korean documents these read as part of the document.
 - Follow the requested output shape, including paragraph limits. Integrate necessary qualifications into that shape where possible; add a separate note only for a material unresolved issue that cannot be safely conveyed there.
 - Keep missing-information placeholders exact and mechanically replaceable, including in any completion instructions. If a link destination is unknown, retain an explicit plain-text placeholder rather than inventing a URL or wrapping it in broken Markdown. When a real destination is supplied, preserve it and use valid link syntax.
 - Do not add a generic preface, praise, closing summary, or offer to do more work.
@@ -129,6 +131,6 @@ Confirm all of the following:
 - Technical terms are retained only when useful and explained when necessary.
 - Imported workplace jargon has been replaced with familiar wording unless it is a formal identifier or the audience's established term.
 - Stock AI transitions, inflated claims, and empty abstract nouns have been removed or made concrete.
-- The ending contains a real conclusion or next action, not generic optimism.
+- Where the artifact needs a conclusion or next action, it is one the source supports, not generic optimism or an added takeaway.
 - Korean registers follow [Register and sentence endings](references/plain-language.md#register-and-sentence-endings). Each Korean punctuation and spacing signal in the revised prose has been reviewed and revised unless a keep case applies.
 - Any user or house-style punctuation restrictions have been applied without corrupting verbatim source text, code, identifiers, or URLs.
