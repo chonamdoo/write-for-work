@@ -1,0 +1,19 @@
+{
+ "name": "write-for-work",
+ "skill_dir": "skills/write-for-work",
+ "cases_from": {
+  "path": "tests/behavior/cases.json",
+  "format": "request-acceptance"
+ },
+ "checks": {
+  "path": "tests/behavior/checks.py",
+  "function": "run"
+ },
+ "max_usd": 10,
+ "model": "sonnet",
+ "judge_model": "sonnet",
+ "reps": 1,
+ "jobs": 4,
+ "min_pass_rate": 0.0,
+ "max_drop": 0.1
+}
